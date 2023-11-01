@@ -1,0 +1,13 @@
+.title {
+  padding: 12.5%;
+  z-index: 1;
+  color: $main-color-light;
+  font-size: $main-heading-font;
+  text-align: right;
+
+  .subtitle {
+    display: block;
+    font-size: $main-subheading-font;
+    margin-top: 0.5em;
+  }
+}

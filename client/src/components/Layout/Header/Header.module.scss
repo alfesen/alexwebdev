@@ -1,0 +1,22 @@
+.header {
+  position: relative;
+  width: 100%;
+  &__background {
+    @extend .full;
+    @include m.background(
+      (
+        linear-gradient(35deg, #00000022, #000000),
+        url('@/assets/img/header-lg.png')
+      )
+    );
+    position: absolute;
+    background-position: top;
+    scale: 1.1;
+  }
+  &__title {
+    @extend .full;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+}
