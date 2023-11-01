@@ -5,7 +5,7 @@
     @extend .full;
     @include m.background(
       (
-        linear-gradient(35deg, #00000022, #000000),
+        linear-gradient(to bottom, #00000060 10%, #111),
         url('@/assets/img/header-lg.png')
       )
     );
