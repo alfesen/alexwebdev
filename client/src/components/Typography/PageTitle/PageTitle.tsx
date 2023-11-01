@@ -1,3 +1,4 @@
+import Typewriter from '../Typewriter/Typewriter'
 import s from './PageTitle.module.scss'
 
 const PageTitle = ({
@@ -10,7 +11,7 @@ const PageTitle = ({
   return (
     <h1 className={s.title}>
       {title}
-      <span className={s.subtitle}>{subtitle}</span>
+      <Typewriter className={s.subtitle} text={subtitle} delay={100} />
     </h1>
   )
 }
