@@ -9,6 +9,18 @@ export default defineConfig({
       '@': '/src',
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @use './src/scss/mixins' as m;
+
+          @import './src/scss/vars';
+          @import './src/scss/shared';
+        `,
+      },
+    },
+  },
   server: {
     watch: {
       usePolling: true,
