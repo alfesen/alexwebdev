@@ -5,15 +5,6 @@ import {
 import PageTitle from '@/components/Typography/PageTitle/PageTitle'
 import s from './Header.module.scss'
 
-const sharedStyles = { height: '100%', width: '100%', overflow: 'hidden' }
-
-const pageTitleParallaxStyles = {
-  ...sharedStyles,
-  display: 'flex',
-  justifyContent: 'right',
-  alignItems: 'center',
-}
-
 const Header = () => {
   return (
     <header className={s.header}>
@@ -25,7 +16,7 @@ const Header = () => {
         <MouseParallaxChild
           factorX={0.1}
           factorY={0.1}
-          style={pageTitleParallaxStyles}>
+          className={s.header__title}>
           <PageTitle title='Alexander Fesenko' subtitle='Web Development' />
         </MouseParallaxChild>
       </MouseParallaxContainer>
