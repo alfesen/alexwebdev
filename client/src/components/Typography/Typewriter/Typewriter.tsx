@@ -1,13 +1,6 @@
+import type { TTypewriter } from '@/types/typography'
 import { useState, useEffect } from 'react'
-const Typewriter = ({
-  text,
-  delay,
-  className,
-}: {
-  text: string
-  delay: number
-  className?: string
-}) => {
+const Typewriter = ({ text, delay, className }: TTypewriter) => {
   const [currentText, setCurrentText] = useState('')
   const [currentIndex, setCurrentIndex] = useState(0)
 
