@@ -1,8 +1,12 @@
+import type { ReactNode } from 'react'
 import Header from './Header/Header'
 
-const MainLayout = () => {
+const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <Header></Header>
+    <>
+      <Header />
+      <main>{children}</main>
+    </>
   )
 }
 
