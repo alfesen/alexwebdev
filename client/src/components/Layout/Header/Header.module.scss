@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   &__background {
-    @extend .full;
+    @extend .u-full;
     @include m.background(
       (
         linear-gradient(to bottom, #00000060 10%, #111),
@@ -14,7 +14,7 @@
     scale: 1.1;
   }
   &__title {
-    @extend .full;
+    @extend .u-full;
     display: flex;
     justify-content: right;
     align-items: center;

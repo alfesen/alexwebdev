@@ -48,7 +48,7 @@
     &__half:nth-child(1) {
       flex: 1;
       aspect-ratio: 1/0.7;
-      padding: $gap-small;
+      padding: $gap-medium;
       background: radial-gradient(#1114 10%, #111 78%),
         url('@/assets/img/author.jpg');
       background-position: center;
