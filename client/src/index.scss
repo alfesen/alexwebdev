@@ -1,0 +1,39 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #111;
+  font-size: $basic-font;
+  width: 100%;
+  overflow-x: hidden;
+  color: #fff;
+}
+
+section {
+  margin: $section-margin;
+}
+
+.container {
+  width: 90%;
+}
+
+h1 {
+  font-size: $main-heading-font;
+  span {
+    font-size: $main-subheading-font;
+  }
+}
+
+h2 {
+  font-size: $secondary-heading-font;
+  text-align: 'center';
+}

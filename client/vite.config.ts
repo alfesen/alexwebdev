@@ -19,6 +19,7 @@ export default defineConfig({
 
           @import './src/scss/vars';
           @import './src/scss/shared';
+          @import './src/scss/keyframes';
         `,
       },
     },

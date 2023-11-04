@@ -36,9 +36,9 @@ const TechStack = () => {
   const icons = [
     BiLogoHtml5,
     BiLogoCss3,
+    BiLogoNodejs,
     BiLogoTypescript,
     BiLogoReact,
-    BiLogoNodejs,
     SiNestjs,
     BiLogoDocker,
   ]
@@ -55,21 +55,19 @@ const TechStack = () => {
   useChain([spring, transRef], [0, 1])
 
   return (
-    <section className={s.stack} id='stack'>
-      <animated.div
-        ref={ref}
-        style={{
-          transform: transform,
-          opacity: opacity,
-        }}
-        className={s.icons}>
-        {transitions((style, Item) => (
-          <animated.div className={s.icon} style={style}>
-            <Item color='#fff' size='6rem' />
-          </animated.div>
-        ))}
-      </animated.div>
-    </section>
+    <animated.div
+      ref={ref}
+      style={{
+        transform: transform,
+        opacity: opacity,
+      }}
+      className={s.stack}>
+      {transitions((style, Item) => (
+        <animated.div className={s.icon} style={style}>
+          <Item color='#fff' size='6rem' />
+        </animated.div>
+      ))}
+    </animated.div>
   )
 }
 

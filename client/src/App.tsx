@@ -1,10 +1,10 @@
 import MainLayout from './components/Layout/MainLayout'
-import TechStack from './components/Sections/TechStack/TechStack'
+import About from './components/Sections/About/About'
 
 function App() {
   return (
     <MainLayout>
-      <TechStack />
+      <About />
     </MainLayout>
   )
 }
