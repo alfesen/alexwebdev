@@ -18,7 +18,7 @@ export default defineConfig({
           @use './src/scss/mixins' as m;
 
           @import './src/scss/vars';
-          @import './src/scss/shared';
+          @import './src/scss/utils';
           @import './src/scss/keyframes';
         `,
       },

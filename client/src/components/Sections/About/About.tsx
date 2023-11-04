@@ -4,6 +4,7 @@ import s from './About.module.scss'
 import author from '@/assets/img/author.jpg'
 import { useInView } from '@react-spring/web'
 import TechStack from '../../Features/TechStack/TechStack'
+import Heading from '@/components/Typography/Heading/Heading'
 const About = () => {
   const [techRef, techInView] = useInView()
   const [imageRef, imageInView] = useInView()
@@ -13,6 +14,7 @@ const About = () => {
       <div
         ref={techRef}
         className={`${s.about__half} ${techInView ? s.shown : ''}`}>
+        <Heading semantic='h2' className='u-center'>Full Stack</Heading>
         <TechStack />
       </div>
       <div
