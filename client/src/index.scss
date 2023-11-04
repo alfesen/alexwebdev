@@ -25,15 +25,3 @@ section {
 .container {
   width: 90%;
 }
-
-h1 {
-  font-size: $main-heading-font;
-  span {
-    font-size: $main-subheading-font;
-  }
-}
-
-h2 {
-  font-size: $secondary-heading-font;
-  text-align: 'center';
-}
