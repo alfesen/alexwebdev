@@ -12,4 +12,15 @@ html {
 
 body {
   background-color: #111;
+  font-size: 1.6rem;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+section {
+  margin: 10rem auto;
+}
+
+.container {
+  width: 90%;
 }
