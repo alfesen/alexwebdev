@@ -11,11 +11,11 @@ html {
 }
 
 body {
-  background-color: #111;
+  background-color: $main-color-dark;
   font-size: $basic-font;
   width: 100%;
   overflow-x: hidden;
-  color: #fff;
+  color: $main-color-light;
 }
 
 section {
