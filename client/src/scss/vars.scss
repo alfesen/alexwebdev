@@ -3,6 +3,7 @@ $main-subheading-font: 2.6rem;
 
 $basic-font: 1.6rem;
 $secondary-heading-font: 3.6rem;
+$small-font: 1.2rem;
 
 $gap-small: 1.5em;
 $gap-medium: 3em;
@@ -11,3 +12,7 @@ $gap-large: 6em;
 $section-margin: 6em auto;
 
 $main-color-light: #fff;
+$main-color-dark: #131313;
+
+$slope-end-polygon: polygon(50% 0%, 100% 100%, 80% 100%, 18% 100%, 0 0);
+$slope-start-polygon: polygon(25% 0%, 100% 0%, 70% 100%, 0% 100%);
