@@ -5,7 +5,7 @@
     @extend .u-full;
     @include m.background(
       (
-        linear-gradient(to bottom, #00000060 10%, #111),
+        linear-gradient(to bottom, #00000060 10%, $main-color-dark),
         url('@/assets/img/header-lg.png')
       )
     );
