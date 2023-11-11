@@ -6,20 +6,19 @@ import { useInView } from '@react-spring/web'
 import TechStack from '../../Features/TechStack/TechStack'
 import Heading from '@/components/Typography/Heading/Heading'
 const About = () => {
-  const [techRef, techInView] = useInView()
-  const [imageRef, imageInView] = useInView()
+  const [ref, inView] = useInView({ once: true })
 
   return (
-    <section className={`${s.about} container`}>
-      <div
-        ref={techRef}
-        className={`${s.about__half} ${techInView ? s.shown : ''}`}>
-        <Heading semantic='h2' className='u-center'>Full Stack</Heading>
+    <section
+      ref={ref}
+      className={`${s.about} ${inView ? s.shown : ''}`}>
+      <div className={`${s.about__half}`}>
+        <Heading semantic='h2' className='u-center'>
+          Full Stack
+        </Heading>
         <TechStack />
       </div>
-      <div
-        ref={imageRef}
-        className={`${s.about__half} ${imageInView ? s.shown : ''}`}>
+      <div className={`${s.about__half}`}>
         <Gallery
           className={s.photo}
           images={[{ src: author, minWidth: 769, alt: 'author' }]}
