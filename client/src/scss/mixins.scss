@@ -3,3 +3,26 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+@mixin media($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: 36em) {
+      @content;
+    }
+  }
+  @if $breakpoint == md {
+    @media (max-width: 48em) {
+      @content;
+    }
+  }
+  @if $breakpoint == lg {
+    @media (max-width: 62em) {
+      @content;
+    }
+  }
+  @if $breakpoint == xl {
+    @media (min-width: 75em) {
+      @content;
+    }
+  }
+}
