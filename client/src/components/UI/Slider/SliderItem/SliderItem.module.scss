@@ -14,7 +14,12 @@
     background-position: right center;
     font-family: sans-serif;
     text-transform: uppercase;
-    animation: left-to-right .6s;
+    animation: left-to-right 0.6s;
+
+    @include m.media(md) {
+      font-size: $small-font;
+      line-height: 1.5;
+    }
   }
   &__start-text {
     width: 65%;
@@ -22,14 +27,6 @@
   }
   &__end {
     clip-path: $slope-end-polygon;
-    animation: right-to-left .8s;
+    animation: right-to-left 0.8s;
   }
 }
-
-@media screen and (max-width: 768px) {
-  .slope__start {
-    font-size: $small-font;
-    line-height: 1.5;
-  }
-}
-

@@ -1,15 +1,38 @@
 .about {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 5em;
   opacity: 0;
   translate: 50% 0;
+
   &.shown {
     animation: fadeUp 0.7s ease-out forwards;
   }
 
   &__half {
     flex: 1;
+    @include m.media(md) {
+      &:nth-child(1) {
+        flex: 1;
+        aspect-ratio: 1/0.7;
+        padding: $gap-medium;
+        @include m.background(
+          (
+            radial-gradient(
+              rgba($main-color-dark, 0.267) 10%,
+              $main-color-dark 78%
+            ),
+            url('@/assets/img/author.jpg')
+          )
+        );
+        background-position: center;
+      }
+
+      &:nth-child(2) {
+        display: none;
+      }
+    }
   }
 }
 
@@ -39,28 +62,5 @@
       rgba($main-color-dark, 0.267) 10%,
       $main-color-dark 78%
     );
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .about {
-    position: relative;
-
-    &__half:nth-child(1) {
-      flex: 1;
-      aspect-ratio: 1/0.7;
-      padding: $gap-medium;
-      background: radial-gradient(
-          rgba($main-color-dark, 0.267) 10%,
-          $main-color-dark 78%
-        ),
-        url('@/assets/img/author.jpg');
-      background-position: center;
-      background-size: cover;
-    }
-
-    &__half:nth-child(2) {
-      display: none;
-    }
   }
 }
