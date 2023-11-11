@@ -1,10 +1,8 @@
 import {
   useTransition,
-  useSpring,
   useChain,
   animated,
   useSpringRef,
-  config,
   useInView,
 } from '@react-spring/web'
 import {
@@ -19,19 +17,13 @@ import { SiNestjs } from 'react-icons/si'
 import s from './TechStack.module.scss'
 
 const TechStack = () => {
-  const [ref, inView] = useInView()
+  const [ref, inView] = useInView({
+    rootMargin: '-10% 0px',
+    once: true,
+  })
+  
   const spring = useSpringRef()
   const transRef = useSpringRef()
-
-  const { opacity, transform } = useSpring({
-    ref: spring,
-    config: config.stiff,
-    from: { opacity: 0, transform: 'translateY(100%)' },
-    to: {
-      opacity: 1,
-      transform: 'translateY(0)',
-    },
-  })
 
   const icons = [
     BiLogoHtml5,
@@ -52,18 +44,12 @@ const TechStack = () => {
     leave: { opacity: 0, scale: 0 },
   })
 
-  useChain([spring, transRef], [0, 1])
+  useChain([spring, transRef], [0, 0.5])
 
   return (
-    <animated.div
-      ref={ref}
-      style={{
-        transform: transform,
-        opacity: opacity,
-      }}
-      className={s.stack}>
+    <animated.div className={s.stack}>
       {transitions((style, Item) => (
-        <animated.div className={s.icon} style={style}>
+        <animated.div className={s.icon} ref={ref} style={style}>
           <Item color='#fff' size='6rem' />
         </animated.div>
       ))}

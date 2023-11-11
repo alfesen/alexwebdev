@@ -1,6 +1,14 @@
-.container > div > div {
+.slider {
+  max-height: 500px !important;
+  overflow-anchor: none;
+}
+
+.before-view {
+  height: 300px;
+}
+
+.slider > div > div {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0;
 }
