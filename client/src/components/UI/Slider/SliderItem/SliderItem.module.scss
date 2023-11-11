@@ -3,6 +3,7 @@
   width: 100%;
   height: 100%;
   cursor: pointer;
+
   &__start {
     @extend .u-flex-center;
     clip-path: $slope-start-polygon;
@@ -13,7 +14,7 @@
     background-position: right center;
     font-family: sans-serif;
     text-transform: uppercase;
-    pointer-events: none;
+    animation: left-to-right .6s;
   }
   &__start-text {
     width: 65%;
@@ -21,6 +22,7 @@
   }
   &__end {
     clip-path: $slope-end-polygon;
+    animation: right-to-left .8s;
   }
 }
 
@@ -30,3 +32,4 @@
     line-height: 1.5;
   }
 }
+

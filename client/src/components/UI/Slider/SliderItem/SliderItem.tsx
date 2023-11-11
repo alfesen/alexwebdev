@@ -8,27 +8,21 @@ const SliderItem = ({
   text,
   backgroundImage,
 }: TSliderItem) => {
-  const randomGradient = () => {
-    const color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
-      Math.random() * 256
-    )}, ${Math.floor(Math.random() * 256)})`
+  const randomColor = () => {
+    const colors = ['#5bc0eb', '#fde74c', '#9bc53d', '#e55934', '#fa7921']
 
-    return {
-      backgroundImage: `linear-gradient(to bottom, #131313 10%, ${color}, ${color})`,
-      opacity: '.6',
-    }
+    const color = colors[Math.floor(Math.random() * colors.length)]
+
+    return color
   }
-  
+
   return (
     <>
-      <ParallaxLayer
-        className={`${s.text}`}
-        offset={offset}
-        speed={0.1}></ParallaxLayer>
-
       <ParallaxLayer offset={offset} speed={0.6} onClick={onClick}>
         <div
-          style={randomGradient()}
+          style={{
+            backgroundImage: `linear-gradient(-60deg, transparent 5%, ${randomColor()}, ${randomColor()} ,${randomColor()})`,
+          }}
           className={`${s.slope} ${s.slope__end}`}
         />
       </ParallaxLayer>
@@ -37,7 +31,7 @@ const SliderItem = ({
         <div
           className={`${s.slope} ${s.slope__start}`}
           style={{
-            backgroundImage,
+            backgroundImage: `linear-gradient(to bottom, #131313 , transparent), url(${backgroundImage})`,
           }}>
           <p className={s['slope__start-text']}>{text}</p>
         </div>
