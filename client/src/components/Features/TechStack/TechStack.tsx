@@ -21,8 +21,6 @@ const TechStack = () => {
     rootMargin: '-10% 0px',
     once: true,
   })
-  
-  const spring = useSpringRef()
   const transRef = useSpringRef()
 
   const icons = [
@@ -44,7 +42,7 @@ const TechStack = () => {
     leave: { opacity: 0, scale: 0 },
   })
 
-  useChain([spring, transRef], [0, 0.5])
+  useChain([transRef], [1])
 
   return (
     <animated.div className={s.stack}>

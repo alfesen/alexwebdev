@@ -5,6 +5,7 @@ export type THeading = {
   children: ReactNode
   className?: string
 }
+export type TAnimatedHeading = Omit<THeading, 'children'> & { text: string }
 
 export type TPageTitle = {
   title: string
