@@ -3,7 +3,6 @@ import {
   useChain,
   animated,
   useSpringRef,
-  useInView,
 } from '@react-spring/web'
 import {
   BiLogoTypescript,
@@ -15,11 +14,12 @@ import {
 } from 'react-icons/bi'
 import { SiNestjs } from 'react-icons/si'
 import s from './TechStack.module.scss'
+import useDebounceTransition from '@/hooks/useDebounceTransition'
 
 const TechStack = () => {
-  const [ref, inView] = useInView({
-    rootMargin: '-10% 0px',
-    once: true,
+  const { ref, inView, debounceTransition, initial } = useDebounceTransition({
+    opacity: 0,
+    scale: 0,
   })
   const transRef = useSpringRef()
 
@@ -36,10 +36,11 @@ const TechStack = () => {
   const transitions = useTransition(icons, {
     ref: transRef,
     trail: 1000 / icons.length,
-    reset: inView,
+    reset: inView ? true : false,
+    initial: initial,
     from: { opacity: 0, scale: 0 },
-    enter: { opacity: 1, scale: 1 },
-    leave: { opacity: 0, scale: 0 },
+    enter: debounceTransition({ opacity: 1, scale: 1 }),
+    leave: debounceTransition({ opacity: 0, scale: 0 }),
   })
 
   useChain([transRef], [1])
