@@ -14,4 +14,8 @@ export class UsersService {
     })
     return this.repo.save(user)
   }
+
+  findUser(email: string) {
+    return this.repo.findOneBy({ email })
+  }
 }
