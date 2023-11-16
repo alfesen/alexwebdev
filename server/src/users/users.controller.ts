@@ -15,4 +15,10 @@ export class UsersController {
     const user = await this.authService.createUser(email, password)
     return user
   }
+
+  @Post('login')
+  async login(@Body() { email, password }: CreateUserDto) {
+    const user = await this.authService.login(email, password)
+    return user
+  }
 }
