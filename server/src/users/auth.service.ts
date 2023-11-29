@@ -12,8 +12,9 @@ export class AuthService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) { }
 
   async createUser(email: string, password: string) {
-    const storedUser = this.userModel.findOne({ email })
-    if(storedUser) {
+    const storedUser = await this.userModel.findOne({ email })
+
+    if (storedUser) {
       throw new BadRequestException('Email is busy')
     }
     const salt = randomBytes(8).toString('hex')
