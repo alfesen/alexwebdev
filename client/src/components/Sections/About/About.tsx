@@ -4,7 +4,6 @@ import s from './About.module.scss'
 import author from '@/assets/img/author.jpg'
 import { useInView } from '@react-spring/web'
 import TechStack from '../../Features/TechStack/TechStack'
-// import Heading from '@/components/Typography/Heading/Heading'
 import AnimatedHeading from '@/components/Typography/AnimatedHeading/AnimatedHeading'
 const About = () => {
   const [ref, inView] = useInView({ once: true })
