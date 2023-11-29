@@ -11,5 +11,10 @@ export class UsersController {
   createUser(@Body() { email, password }: CreateUserDto) {
     return this.authService.createUser(email, password)
   }
+  
+  @Post('signin')
+  login(@Body() { email, password }: CreateUserDto) {
+    return this.authService.login(email, password)
+  }
 
 }
