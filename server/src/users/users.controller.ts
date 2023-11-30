@@ -1,5 +1,4 @@
-import { Body, Controller, Post, Session } from '@nestjs/common';
-import { UsersService } from './users.service';
+import { Body, Controller, Get, Post, Session } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 
@@ -20,5 +19,4 @@ export class UsersController {
     session.userId = user._id
     return this.authService.login(email, password)
   }
-
 }
