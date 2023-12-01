@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UsersService } from './users/users.service';
 import { UsersModule } from './users/users.module';
+import { PromotionsModule } from './promotions/promotions.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -15,8 +15,8 @@ import { UsersModule } from './users/users.module';
       }
     },
     inject: [ConfigService]
-  }), UsersModule],
+  }), UsersModule, PromotionsModule],
   controllers: [],
-  providers: [UsersService],
+  providers: [],
 })
 export class AppModule { }
