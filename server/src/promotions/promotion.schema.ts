@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import mongoose, { HydratedDocument } from 'mongoose'
-import { IsString, IsMongoId } from 'class-validator'
+import { IsString } from 'class-validator'
 
 export type HydratedPromotion = HydratedDocument<Promotion>
 
@@ -14,7 +14,6 @@ export class Promotion {
   @Prop({ required: true })
   image: string
 
-  @IsMongoId()
   @Prop({
     ref: 'User'
   })
