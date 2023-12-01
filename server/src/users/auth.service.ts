@@ -21,8 +21,7 @@ export class AuthService {
     const hash = await scrypt(password, salt, 32) as Buffer
     const result = `${salt}.${hash.toString('hex')}`
 
-    const user = new this.userModel({ email, password: result })
-
+    const user = new this.userModel({ email, password: result, promotions: [] })
 
     user.save()
 
