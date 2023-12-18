@@ -31,7 +31,7 @@ section {
   grid-template-columns:
     [full-start] minmax(1rem, 1fr)
     [content-start]
-    min(100% - 2rem, 60rem)
+    min(100% - 3rem, 70rem)
     [content-end]
     minmax(1rem, 1fr) [full-end];
 }
