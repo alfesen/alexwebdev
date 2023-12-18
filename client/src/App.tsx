@@ -1,6 +1,6 @@
-import MainLayout from './components/Layout/MainLayout'
-import About from './components/Sections/About/About'
-import Promotion from './components/Sections/Promotion/Promotion'
+import MainLayout from "./components/Layout/MainLayout"
+import About from "./components/Sections/About/About"
+import Promotion from "./components/Sections/Promotion/Promotion"
 
 function App() {
   return (

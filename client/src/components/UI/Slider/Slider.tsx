@@ -1,17 +1,17 @@
-import { useRef } from 'react'
-import { Parallax } from '@react-spring/parallax'
-import type { IParallax } from '@react-spring/parallax'
-import { nanoid } from 'nanoid'
-import s from './Slider.module.scss'
-import SliderItem from './SliderItem/SliderItem'
-import { TSlider } from '@/types/features'
-import { useInView } from '@react-spring/web'
+import { useRef } from "react"
+import { Parallax } from "@react-spring/parallax"
+import type { IParallax } from "@react-spring/parallax"
+import { nanoid } from "nanoid"
+import s from "./Slider.module.scss"
+import SliderItem from "./SliderItem/SliderItem"
+import { TSlider } from "@/types/features"
+import { useInView } from "@react-spring/web"
 
 const Slider = ({ items }: TSlider) => {
   const parallax = useRef<IParallax>(null)
 
   const [ref, inView] = useInView({
-    rootMargin: '-200px 0%',
+    rootMargin: "-200px 0%",
     once: true,
   })
 
@@ -26,15 +26,16 @@ const Slider = ({ items }: TSlider) => {
   }
 
   return (
-    <div ref={ref} className={!inView ? s['before-view'] : undefined}>
+    <div ref={ref} className={!inView ? s["before-view"] : undefined}>
       {inView && (
         <Parallax
           className={s.slider}
           ref={parallax}
           pages={items.length}
           horizontal
-          innerStyle={{ height: '500px', display: 'flex' }}
-          config={{ damping: 1 }}>
+          innerStyle={{ height: "500px", display: "flex" }}
+          config={{ damping: 1 }}
+        >
           {items.map(
             ({ text, background }: Record<string, string>, index: number) => {
               return (
