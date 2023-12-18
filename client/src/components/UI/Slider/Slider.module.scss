@@ -1,8 +1,11 @@
 .slider {
   position: relative;
-  max-height: 500px !important;
+  max-height: 70dvh !important;
   overflow-anchor: none;
   scrollbar-width: none;
+  &::-webkit-scrollbar {
+    visibility: hidden;
+  }
 }
 
 .before-view {
