@@ -1,3 +1,5 @@
+import { IconType } from "react-icons"
+
 export type TImage = {
   src: string
   minWidth?: number
@@ -18,4 +20,10 @@ export type TSliderItem = {
   onClick: () => void
   text: string
   backgroundImage: string
+}
+
+export type TTechStackListProps = {
+  logo: IconType
+  heading: string
+  text: string
 }
