@@ -33,7 +33,7 @@ const Slider = ({ items }: TSlider) => {
           ref={parallax}
           pages={items.length}
           horizontal
-          innerStyle={{ height: "500px", display: "flex" }}
+          innerStyle={{ height: "100dvh", display: "flex" }}
           config={{ damping: 1 }}
         >
           {items.map(

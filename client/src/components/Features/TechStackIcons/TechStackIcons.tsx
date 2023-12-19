@@ -13,10 +13,10 @@ import {
   BiLogoDocker,
 } from 'react-icons/bi'
 import { SiNestjs } from 'react-icons/si'
-import s from './TechStack.module.scss'
+import s from './TechStackIcons.module.scss'
 import useDebounceTransition from '@/hooks/useDebounceTransition'
 
-const TechStack = () => {
+const TechStackIcons = () => {
   const { ref, inView, debounceTransition, initial } = useDebounceTransition({
     opacity: 0,
     scale: 0,
@@ -56,4 +56,4 @@ const TechStack = () => {
   )
 }
 
-export default TechStack
+export default TechStackIcons
