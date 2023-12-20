@@ -17,7 +17,8 @@
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.11.0",
-    "react-parallax-mouse": "^2.0.1"
+    "react-parallax-mouse": "^2.0.1",
+    "string-ts": "^2.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.33",
