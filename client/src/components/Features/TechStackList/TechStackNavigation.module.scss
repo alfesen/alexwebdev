@@ -1,0 +1,47 @@
+.navigation {
+  gap: 1em;
+  margin-bottom: $gap-medium;
+}
+
+.btn {
+  position: relative;
+  background: linear-gradient(
+    to right,
+    rgb(255, 138, 0, 0.25),
+    rgb(218, 27, 96, 0.25)
+  );
+
+  color: $main-color-light;
+  padding: 0.25em 0.5em;
+  font-size: $medium-font;
+  cursor: pointer;
+  border: unset;
+  transform: skewX(-20deg);
+  .btn__text {
+    display: inline-block;
+    transform: skewX(20deg);
+  }
+  transition: box-shadow 0.3s, background 0.3s;
+  &:hover, &.active {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    background-color: rgb(255, 138, 0, 0.3);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    bottom: 2px;
+    background-color: hsl(297, 19%, 75%);
+    scale: 0 1;
+    transform-origin: right;
+    transition: scale 0.5s;
+    z-index: -4;
+  }
+
+  &:hover::after {
+    scale: 1 1;
+    transform-origin: left;
+  }
+}

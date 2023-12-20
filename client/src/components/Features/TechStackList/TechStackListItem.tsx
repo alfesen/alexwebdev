@@ -1,8 +1,8 @@
 import Heading from "@/components/Typography/Heading/Heading"
 import s from "./TechStackListItem.module.scss"
-import type { TTechStackListProps } from "@/types/features"
+import type { TTechStackListItemProps } from "@/types/features"
 
-const TechStackListItem = ({ logo, heading, text }: TTechStackListProps) => {
+const TechStackListItem = ({ logo, heading, text }: TTechStackListItemProps) => {
   const Logo = logo
   return (
     <li className={s.item}>
