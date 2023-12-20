@@ -22,8 +22,12 @@ export type TSliderItem = {
   backgroundImage: string
 }
 
-export type TTechStackListProps = {
+export type TTechStackListItemProps = {
   logo: IconType
   heading: string
   text: string
+}
+
+export type TTechStackList = {
+  items: TTechStackListItemProps[]
 }
