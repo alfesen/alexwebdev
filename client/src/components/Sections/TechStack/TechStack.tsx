@@ -12,10 +12,12 @@ const TechStack = () => {
   const keys = Object.keys(LIST_ITEMS)
 
   return (
-    <ContentGrid>
-      <TechStackNavigation keys={keys} page={page} setPage={setPage} />
-      <TechStackList items={LIST_ITEMS[page]} />
-    </ContentGrid>
+    <section>
+      <ContentGrid>
+        <TechStackNavigation keys={keys} page={page} setPage={setPage} />
+        <TechStackList items={LIST_ITEMS[page]} />
+      </ContentGrid>
+    </section>
   )
 }
 
