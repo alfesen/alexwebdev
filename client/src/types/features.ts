@@ -31,3 +31,9 @@ export type TTechStackListItemProps = {
 export type TTechStackList = {
   items: TTechStackListItemProps[]
 }
+
+export type TTechStackNavigation = {
+  keys: string[]
+  page: string
+  setPage: (key: string) => void
+}
