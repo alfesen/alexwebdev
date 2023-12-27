@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
-import { IsString, IsUrl } from "class-validator"
+import { IsString } from "class-validator"
 import { HydratedDocument } from "mongoose"
 
 export type HydratedTech = HydratedDocument<Tech>
@@ -14,9 +14,8 @@ export class Tech {
   @Prop({ required: true })
   text: string
 
-  @IsUrl()
   @Prop({ required: true })
-  image: string
+  icon: string
 }
 
 export const TechSchema = SchemaFactory.createForClass(Tech)

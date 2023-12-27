@@ -3,8 +3,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { PromotionsModule } from './promotions/promotions.module';
-import { TechService } from './tech/tech.service';
-import { TechController } from './tech/tech.controller';
 import { TechModule } from './tech/tech.module';
 
 @Module({
@@ -19,7 +17,7 @@ import { TechModule } from './tech/tech.module';
     },
     inject: [ConfigService]
   }), UsersModule, PromotionsModule, TechModule],
-  controllers: [TechController],
-  providers: [TechService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule { }
