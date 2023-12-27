@@ -14,7 +14,7 @@ const AnimatedHeading = ({ text, semantic, className }: TAnimatedHeading) => {
   const { ref, inView, debounceTransition, initial } = useDebounceTransition({
     opacity: 0,
     transform: 'translate3d(50px, 30%, 0px)',
-  })
+  }, true)
 
   const debounced = [
     {
