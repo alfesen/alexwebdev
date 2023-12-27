@@ -20,6 +20,7 @@ body {
 
 section {
   margin: $section-margin;
+  min-height: 100dvh;
 }
 
 .container {

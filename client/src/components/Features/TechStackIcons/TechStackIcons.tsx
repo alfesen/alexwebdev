@@ -20,7 +20,7 @@ const TechStackIcons = () => {
   const { ref, inView, debounceTransition, initial } = useDebounceTransition({
     opacity: 0,
     scale: 0,
-  })
+  }, true)
   const transRef = useSpringRef()
 
   const icons = [
