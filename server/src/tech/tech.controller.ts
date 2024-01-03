@@ -3,23 +3,23 @@ import {
   Controller,
   Post,
   UploadedFile,
-  UseInterceptors,
-} from "@nestjs/common"
-import { FileInterceptor } from "@nestjs/platform-express"
-import { TechService } from "./tech.service"
-import { Tech } from "./tech.schema"
+} from '@nestjs/common'
+import { TechService } from './tech.service'
+import { Tech } from './tech.schema'
+import { UploadImage } from 'src/decorators/upload-image.decorator'
 
-@Controller("tech")
+@Controller('tech')
 export class TechController {
   constructor(private techService: TechService) {}
 
   @Post()
-  @UseInterceptors(FileInterceptor("icon"))
+  @UploadImage('icon')
   async createTech(
     @Body() { heading, text }: Tech,
-    @UploadedFile() icon: Express.Multer.File
+    @UploadedFile()
+    icon: Express.Multer.File
   ) {
-    console.log(icon.path)
-    return this.techService.createTech(heading, text, icon.path)
+    const result = await this.techService.createTech(heading, text, icon.path)
+    return result
   }
 }
