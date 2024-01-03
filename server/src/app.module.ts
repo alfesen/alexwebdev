@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { PromotionsModule } from './promotions/promotions.module';
+import { TechModule } from './tech/tech.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -15,7 +16,7 @@ import { PromotionsModule } from './promotions/promotions.module';
       }
     },
     inject: [ConfigService]
-  }), UsersModule, PromotionsModule],
+  }), UsersModule, PromotionsModule, TechModule],
   controllers: [],
   providers: [],
 })
