@@ -1,10 +1,15 @@
-import { NestInterceptor, CallHandler, createParamDecorator, UseInterceptors } from "@nestjs/common";
+import {
+  NestInterceptor,
+  CallHandler,
+  UseInterceptors,
+  ExecutionContext,
+} from '@nestjs/common'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { plainToClass } from 'class-transformer'
 
 interface SerializeConstructor<T> {
-  new(...args: any[]): T
+  new (...args: any[]): T
 }
 
 export function Serialize<T>(dto: SerializeConstructor<T>) {
@@ -12,14 +17,18 @@ export function Serialize<T>(dto: SerializeConstructor<T>) {
 }
 
 export class SerializeInterceptor<T> implements NestInterceptor {
-  constructor(private dto: SerializeConstructor<T>) { }
+  constructor(private dto: SerializeConstructor<T>) {}
 
-  intercept(context: never, handler: CallHandler): Observable<any> {
+  intercept(context: ExecutionContext, handler: CallHandler): Observable<any> {
+    const response = context.switchToHttp().getResponse()
+
     return handler.handle().pipe(
       map((data: any) => {
-        return plainToClass(this.dto, data, {
-          excludeExtraneousValues: true
-        })
+        return response.json(
+          plainToClass(this.dto, data, {
+            excludeExtraneousValues: true,
+          })
+        )
       })
     )
   }
