@@ -6,7 +6,7 @@ import { extname } from 'path'
 import { randomUUID } from 'crypto'
 
 const storage = diskStorage({
-  destination: 'upload/images',
+  destination: 'uploads/images',
   filename: (req, file, cb) => {
     const ext = extname(file.originalname)
     cb(null, `${randomUUID()}${ext}`)
