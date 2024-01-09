@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Post,
   UploadedFile,
 } from '@nestjs/common'
@@ -21,5 +22,10 @@ export class TechController {
   ) {
     const result = await this.techService.createTech(heading, text, icon.path)
     return result
+  }
+
+  @Get()
+  getAllTechs() {
+    return this.techService.getAllTechs()
   }
 }
