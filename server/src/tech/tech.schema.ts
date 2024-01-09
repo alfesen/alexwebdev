@@ -14,6 +14,10 @@ export class Tech {
   @Prop({ required: true })
   text: string
 
+  @IsString()
+  @Prop({required: true})
+  category: string
+
   @Prop({ required: true })
   icon: string
 }
