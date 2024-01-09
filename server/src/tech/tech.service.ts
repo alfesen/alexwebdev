@@ -7,7 +7,7 @@ import { Model } from "mongoose"
 export class TechService {
   constructor(@InjectModel(Tech.name) private techModel: Model<Tech>) {}
 
-  async createTech(heading: string, text: string, icon: string) {
+  async createTech(heading: string, text: string, category: string, icon: string) {
     const storedTech = await this.techModel.findOne({ heading })
 
     if (storedTech) {
@@ -17,12 +17,13 @@ export class TechService {
     const tech = new this.techModel({
       heading,
       text,
+      category,
       icon,
     })
 
     tech.save()
 
-    return tech
+    return tech.toObject({getters: true})
   }
   
   async getAllTechs() {
@@ -32,5 +33,11 @@ export class TechService {
     }
 
     return storedTechs.map(tech => tech.toObject({getters: true}))
+  }
+
+  async getSingleTech(id: string) {
+    const tech = await this.techModel.findById(id)
+    if(!tech) throw new NotFoundException('The tech with a given id was not found')
+    return tech.toObject({getters: true})
   }
 } 
