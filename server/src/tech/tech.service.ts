@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from "@nestjs/common"
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common"
 import { InjectModel } from "@nestjs/mongoose"
 import { Tech } from "./tech.schema"
 import { Model } from "mongoose"
@@ -24,4 +24,13 @@ export class TechService {
 
     return tech
   }
-}
+  
+  async getAllTechs() {
+    const storedTechs = await this.techModel.find()
+    if(!storedTechs) {
+      throw new NotFoundException('No techs were found')
+    }
+
+    return storedTechs.map(tech => tech.toObject({getters: true}))
+  }
+} 
