@@ -1,7 +1,7 @@
 import { Body, Controller, Post, Res } from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { User } from './user.schema'
-import { Serialize } from 'src/interceptors/serialize.interceptor'
+import { Serialize } from 'src/decorators/serialize.decorator'
 import { UserDto } from './dtos/user.dto'
 import { Response } from 'express'
 
