@@ -30,6 +30,12 @@ export class TechService {
       icon,
     })
 
+    const error = tech.validateSync()
+
+    if (error) {
+      throw new BadRequestException(error.message)
+    }
+
     tech.save()
 
     return tech.toObject({ getters: true })
