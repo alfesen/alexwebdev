@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common'
 import { Request, Response } from 'express'
 import * as fs from 'fs'
+import { parse } from 'path'
 
 export type MulterFiles = {
   [fieldname: string]: Express.Multer.File[]
@@ -19,7 +20,8 @@ export class UploadExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>()
 
     if (request.file) {
-      fs.unlink(request.file.path, (err) => {
+      const {dir, name} = parse(request.file.path)
+      fs.unlink(`${dir}/${name}.webp`, (err) => {
         console.log(err)
       })
     }
