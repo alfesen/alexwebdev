@@ -4,13 +4,13 @@ import {
   Get,
   Param,
   Post,
-  UploadedFile,
   UseGuards,
 } from '@nestjs/common'
 import { TechService } from './tech.service'
 import { Tech } from './tech.schema'
 import { UploadImage } from 'src/decorators/upload-image.decorator'
 import { AuthGuard } from 'src/guards/auth.guard'
+import { SharpImage } from 'src/decorators/sharp-image.decorator'
 
 @Controller('tech')
 export class TechController {
@@ -21,10 +21,9 @@ export class TechController {
   @UploadImage('icon')
   createTech(
     @Body() { heading, text, category }: Tech,
-    @UploadedFile()
-    icon: Express.Multer.File
+    @SharpImage(50) icon: string
   ) {
-    return this.techService.createTech(heading, text, category, icon.path)
+    return this.techService.createTech(heading, text, category, icon)
   }
 
   @Get()
