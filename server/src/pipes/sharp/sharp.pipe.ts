@@ -1,16 +1,12 @@
 import {
   BadRequestException,
   Injectable,
-  PipeTransform,
-  UploadedFile,
+  PipeTransform
 } from '@nestjs/common'
 import * as sharp from 'sharp'
 import * as fs from 'fs'
 import { join, parse, relative } from 'path'
 
-export function SharpImage(width: number) {
-  return UploadedFile(new SharpPipe(width))
-}
 
 @Injectable()
 export class SharpPipe
