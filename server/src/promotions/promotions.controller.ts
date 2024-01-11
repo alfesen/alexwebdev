@@ -3,7 +3,6 @@ import {
   Controller,
   Post,
   Req,
-  UploadedFile,
   UseGuards,
 } from '@nestjs/common'
 import { PromotionsService } from './promotions.service'
@@ -11,6 +10,7 @@ import { AuthGuard } from 'src/guards/auth.guard'
 import { UploadImage } from 'src/decorators/upload-image.decorator'
 import { Request } from 'express'
 import { PromotionDto } from './dtos/promotion.dto'
+import { SharpImage } from 'src/decorators/sharp-image.decorator'
 
 @Controller('promotions')
 export class PromotionsController {
@@ -22,7 +22,7 @@ export class PromotionsController {
   async createPromotion(
     @Body() { text }: PromotionDto,
     @Req() request: Request,
-    @UploadedFile() image: Express.Multer.File
+    @SharpImage(1200) image: string
   ) {
     const cookies = request.headers.cookie
     const cookiesArray: string[] = cookies ? cookies.split('; ') : []
@@ -34,7 +34,7 @@ export class PromotionsController {
 
     const promotion = await this.promotionsService.createPromotion(
       text,
-      image.path,
+      image,
       userId
     )
 
