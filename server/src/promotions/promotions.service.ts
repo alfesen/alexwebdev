@@ -15,6 +15,12 @@ export class PromotionsService {
       creator
     })
 
+    const error = promotion.validateSync()
+
+    if (error) {
+      throw new BadRequestException(error.message)
+    }
+
     await promotion.save()
 
     const session = await this.connection.startSession()
