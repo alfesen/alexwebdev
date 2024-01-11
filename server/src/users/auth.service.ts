@@ -23,6 +23,12 @@ export class AuthService {
 
     const user = new this.userModel({ email, password: result, promotions: [] })
 
+    const error = user.validateSync()
+
+    if(error) {
+      throw new ForbiddenException(error.message)
+    }
+ 
     user.save()
 
     return user
