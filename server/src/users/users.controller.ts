@@ -4,7 +4,7 @@ import { Serialize } from 'src/decorators/serialize.decorator'
 import { UserDto } from './dtos/user.dto'
 import { Response } from 'express'
 
-const expirationHours = 1
+const expirationHours = 8
 const expirationDate = new Date()
 expirationDate.setTime(
   expirationDate.getTime() + expirationHours * 60 * 60 * 1000
