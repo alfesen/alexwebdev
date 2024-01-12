@@ -7,8 +7,8 @@ import {
   useSpringRef,
   useTransition,
 } from "@react-spring/web"
-
 const TechStackList = ({ items }: TTechStackList) => {
+
   const transRef = useSpringRef()
   const transitions = useTransition(items, {
     ref: transRef,

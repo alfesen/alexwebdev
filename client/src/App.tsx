@@ -1,14 +1,21 @@
-import MainLayout from "./components/Layout/MainLayout"
-import About from "./components/Sections/About/About"
-import Promotion from "./components/Sections/Promotion/Promotion"
+import MainLayout from "./components/Layout/MainLayout";
+import About from "./components/Sections/About/About";
+import Promotion from "./components/Sections/Promotion/Promotion";
+import TechStack from "./components/Sections/TechStack/TechStack";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
-    <MainLayout>
-      <About />
-      <Promotion />
-    </MainLayout>
-  )
+    <QueryClientProvider client={queryClient}>
+      <MainLayout>
+        <About />
+        <Promotion />
+        <TechStack />
+      </MainLayout>
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;
