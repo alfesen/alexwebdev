@@ -1,4 +1,3 @@
-import { IconType } from "react-icons"
 
 export type TImage = {
   src: string
@@ -23,7 +22,7 @@ export type TSliderItem = {
 }
 
 export type TTechStackListItemProps = {
-  logo: IconType
+  icon: string
   heading: string
   text: string
 }
