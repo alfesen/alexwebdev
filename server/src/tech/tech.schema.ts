@@ -1,25 +1,35 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
-import { IsString } from "class-validator"
 import { HydratedDocument } from "mongoose"
 
 export type HydratedTech = HydratedDocument<Tech>
 
-@Schema()
-export class Tech {
-  @IsString()
+@Schema({})
+export class TechItem {
   @Prop({ required: true })
   heading: string
 
-  @IsString()
   @Prop({ required: true })
   text: string
 
-  @IsString()
-  @Prop({required: true})
-  category: string
-
   @Prop({ required: true })
   icon: string
+
+  @Prop({ required: true })
+  category: string
+}
+
+class ITech {
+  categories: {
+    [category: string]: [TechItem]
+  }
+}
+
+@Schema()
+export class Tech {
+  @Prop({type: ITech})
+  categories: {
+    [category: string]: TechItem[]
+  }
 }
 
 export const TechSchema = SchemaFactory.createForClass(Tech)
