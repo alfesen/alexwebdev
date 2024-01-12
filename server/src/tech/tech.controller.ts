@@ -7,10 +7,10 @@ import {
   UseGuards,
 } from '@nestjs/common'
 import { TechService } from './tech.service'
-import { Tech } from './tech.schema'
 import { UploadImage } from 'src/decorators/upload-image.decorator'
 import { AuthGuard } from 'src/guards/auth.guard'
 import { SharpImage } from 'src/decorators/sharp-image.decorator'
+import { CreateTechDto } from './dtos/create-tech.dto'
 
 @Controller('tech')
 export class TechController {
@@ -20,7 +20,7 @@ export class TechController {
   @Post()
   @UploadImage('icon')
   createTech(
-    @Body() { heading, text, category }: Tech,
+    @Body() { heading, text, category }: CreateTechDto,
     @SharpImage(50) icon: string
   ) {
     return this.techService.createTech(heading, text, category, icon)
