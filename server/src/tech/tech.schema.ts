@@ -4,7 +4,7 @@ import { HydratedDocument } from "mongoose"
 export type HydratedTech = HydratedDocument<Tech>
 
 @Schema({})
-export class TechItem {
+export class Tech {
   @Prop({ required: true })
   heading: string
 
@@ -16,20 +16,6 @@ export class TechItem {
 
   @Prop({ required: true })
   category: string
-}
-
-class ITech {
-  categories: {
-    [category: string]: [TechItem]
-  }
-}
-
-@Schema()
-export class Tech {
-  @Prop({type: ITech})
-  categories: {
-    [category: string]: TechItem[]
-  }
 }
 
 export const TechSchema = SchemaFactory.createForClass(Tech)
