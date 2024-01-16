@@ -9,6 +9,8 @@ import {
 } from "@react-spring/web"
 const TechStackList = ({ items }: TTechStackList) => {
 
+  console.log(items)
+
   const transRef = useSpringRef()
   const transitions = useTransition(items, {
     ref: transRef,
