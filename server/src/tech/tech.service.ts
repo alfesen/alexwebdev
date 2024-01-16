@@ -90,12 +90,12 @@ export class TechService {
     const techs = await this.techModel.find()
 
     const categories = storedTechCategories.map((c) => ({
-      [c.category]: {
-        items: techs.filter((t) => t.category === c.category),
-      },
+      [c.category]: techs.filter((t) => t.category === c.category),
     }))
 
-    return categories
+    const mergedCategoryObject = Object.assign({}, ...categories)
+
+    return mergedCategoryObject
   }
 
   async getSingleTech(id: string) {
