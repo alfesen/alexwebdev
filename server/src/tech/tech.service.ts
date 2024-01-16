@@ -3,13 +3,18 @@ import {
   Injectable,
   NotFoundException,
 } from "@nestjs/common"
-import { InjectModel } from "@nestjs/mongoose"
+import { InjectConnection, InjectModel } from "@nestjs/mongoose"
 import { Tech } from "./tech.schema"
-import { Model } from "mongoose"
+import { Connection, Model } from "mongoose"
+import { TechCategory } from "./tech-category.schema"
 
 @Injectable()
 export class TechService {
-  constructor(@InjectModel(Tech.name) private techModel: Model<Tech>) {}
+  constructor(
+    @InjectModel("Tech") private techModel: Model<Tech>,
+    @InjectModel("TechCategory") private techCategoryModel: Model<TechCategory>,
+    @InjectConnection() private connection: Connection,
+  ) {}
 
   async createTech(
     heading: string,
@@ -17,136 +22,80 @@ export class TechService {
     category: string,
     icon: string,
   ) {
-    const tech = await this.techModel.findOne()
+    const searchedCategory = await this.findOrCreateCategory(category)
 
-    if (!tech) {
-      await this.createTechWithCategory(heading, text, category, icon)
-    } else if (!tech.categories[category]) {
-      await this.updateTechWithNewCategory(tech, heading, text, category, icon)
-    } else {
-      this.checkExistingTech(tech, category, heading)
-      await this.updateTechWithExistingCategory(
-        tech,
-        heading,
-        text,
-        category,
-        icon,
-      )
-    }
-  }
-
-  private async createTechWithCategory(
-    heading: string,
-    text: string,
-    category: string,
-    icon: string,
-  ) {
-    const newCategory = new this.techModel({
-      categories: {
-        [category]: [
-          {
-            category,
-            heading,
-            icon,
-            text,
-          },
-        ],
-      },
-    })
-
-    this.validateAndSave(newCategory)
-  }
-
-  private async updateTechWithNewCategory(
-    tech: any,
-    heading: string,
-    text: string,
-    category: string,
-    icon: string,
-  ) {
-    const updateQuery = {
-      $set: {
-        categories: {
-          ...tech.categories,
-          [category]: [
-            {
-              category,
-              heading,
-              icon,
-              text,
-            },
-          ],
-        },
-      },
-    }
-
-    await this.updateTech(tech, updateQuery)
-  }
-
-  private checkExistingTech(tech: any, category: string, heading: string) {
-    const existingTech = tech.categories[category]?.find(
-      (c: any) => c.heading === heading,
-    )
+    const existingTech = await this.techModel.findOne({ heading, category })
 
     if (existingTech) {
       throw new BadRequestException(
-        "The tech with a given heading already exists in this category",
+        "The tech with a given name already exists in this category",
       )
     }
-  }
 
-  private async updateTechWithExistingCategory(
-    tech: any,
-    heading: string,
-    text: string,
-    category: string,
-    icon: string,
-  ) {
-    const updateQuery = {
-      $push: {
-        [`categories.${category}`]: {
-          category,
-          heading,
-          icon,
-          text,
-        },
-      },
-    }
+    const tech = new this.techModel({
+      heading,
+      text,
+      category,
+      icon,
+    })
 
-    await this.updateTech(tech, updateQuery)
-  }
+    const techErrors = tech.validateSync()
 
-  private async updateTech(tech: any, updateQuery: any) {
+    if (techErrors) throw new BadRequestException(techErrors.message)
+
     try {
-      await this.techModel.updateOne({ _id: tech._id }, updateQuery)
-      const updatedTech = await this.techModel.findById(tech._id)
-      return updatedTech.toObject({ getters: true })
+      await tech.save()
     } catch (error) {
       throw new BadRequestException(error.message)
     }
-  }
 
-  private async validateAndSave(newCategory: any) {
-    const error = newCategory.validateSync()
-    if (error) {
-      throw new BadRequestException(error.message)
-    }
+    const session = await this.connection.startSession()
+    session.startTransaction()
 
     try {
-      await newCategory.save()
-      return newCategory.toObject({ getters: true })
+      searchedCategory.items.push(tech.id)
+      await searchedCategory.save()
+      await session.commitTransaction()
     } catch (error) {
+      await session.abortTransaction()
       throw new BadRequestException(error.message)
     }
+
+    return searchedCategory.toObject({ getters: true })
+  }
+
+  private async findOrCreateCategory(category: string) {
+    let searchedCategory = await this.techCategoryModel.findOne({ category })
+    if (!searchedCategory) {
+      searchedCategory = new this.techCategoryModel({
+        category,
+        items: [],
+      })
+      try {
+        await searchedCategory.save()
+      } catch (error) {
+        throw new BadRequestException(error.message)
+      }
+    }
+
+    return searchedCategory
   }
 
   async getAllTechs() {
-    const storedTechs = await this.techModel.find()
-    if (!storedTechs || storedTechs.length === 0) {
+    const storedTechCategories = await this.techCategoryModel.find()
+    if (!storedTechCategories || storedTechCategories.length === 0) {
       throw new NotFoundException("No techs were found")
     }
 
-    return storedTechs[0].toObject({ getters: true })
+    const techs = await this.techModel.find()
+
+    const categories = storedTechCategories.map((c) => ({
+      [c.category]: {
+        items: techs.filter((t) => t.category === c.category),
+      },
+    }))
+
+    return categories
   }
 
   async getSingleTech(id: string) {
