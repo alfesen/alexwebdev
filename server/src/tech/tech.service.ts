@@ -89,9 +89,15 @@ export class TechService {
 
     const techs = await this.techModel.find()
 
-    const categories = storedTechCategories.map((c) => ({
-      [c.category]: techs.filter((t) => t.category === c.category),
-    }))
+    const categories = storedTechCategories.map((c) => {
+      const categoryTechs = techs.filter((t) => t.category === c.category)
+
+      if (categoryTechs.length > 0) {
+        return {
+          [c.category]: categoryTechs,
+        }
+      }
+    })
 
     const mergedCategoryObject = Object.assign({}, ...categories)
 
@@ -103,5 +109,13 @@ export class TechService {
     if (!tech)
       throw new NotFoundException("The tech with a given id was not found")
     return tech.toObject({ getters: true })
+  }
+
+  async deleteTech(id: string) {
+    try {
+      await this.techModel.findByIdAndDelete(id)
+    } catch (err) {
+      throw new BadRequestException(err.message)
+    }
   }
 }
