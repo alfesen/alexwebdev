@@ -15,25 +15,31 @@ const TechStack = () => {
     to: { opacity: 1 },
   }));
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["tech stack categories"],
     queryFn: async () => {
       const { data: categories } = await axios.get(
-        `http://localhost:3000/tech`
+        `${import.meta.env.VITE_SERVER_URL}/tech`
       );
       const page = Object.keys(categories)[0];
       setPage(page);
       return categories;
     },
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: true,
+    refetchOnMount: "always",
   });
 
   if (isLoading) {
     return <></>;
   }
   if (isError) {
+    console.error(error);
     return <></>;
   }
+
   const keys = Object.keys(data);
+  const sortedKeys = keys.sort((a, b) => data[a].length + data[b].length);
 
   const AnimatedContainer = animated(ContentGrid);
 
@@ -41,7 +47,11 @@ const TechStack = () => {
     <section ref={ref}>
       {!isLoading && inView && page && (
         <AnimatedContainer style={props}>
-          <TechStackNavigation keys={keys} page={page} setPage={setPage} />
+          <TechStackNavigation
+            keys={sortedKeys}
+            page={page}
+            setPage={setPage}
+          />
           <TechStackList items={data[page]} />
         </AnimatedContainer>
       )}
