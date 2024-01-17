@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Res,
   UseGuards,
@@ -24,7 +25,7 @@ export class TechController {
   @UploadImage("icon")
   createTech(
     @Body() { heading, text, category }: CreateTechDto,
-    @SharpImage(50) icon: string,
+    @SharpImage(50, true) icon: string,
   ) {
     return this.techService.createTech(heading, text, category, icon)
   }
@@ -37,6 +38,23 @@ export class TechController {
   @Get("/:id")
   getSingleTech(@Param("id") id: string) {
     return this.techService.getSingleTech(id)
+  }
+
+  @Patch("/:id")
+  @UploadImage("icon")
+  async updateTech(
+    @Param("id") id: string,
+    @Body() { heading, text, category },
+    @SharpImage(50, false) icon: string,
+  ) {
+    const newTech = await this.techService.updateTech(
+      id,
+      category,
+      heading,
+      text,
+      icon ? icon : undefined,
+    )
+    return newTech
   }
 
   @Delete("/:id")

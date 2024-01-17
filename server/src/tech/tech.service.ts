@@ -7,6 +7,8 @@ import { InjectConnection, InjectModel } from "@nestjs/mongoose"
 import { Tech } from "./tech.schema"
 import { Connection, Model } from "mongoose"
 import { TechCategory } from "./tech-category.schema"
+import { join, relative } from "path"
+import * as fs from "fs"
 
 @Injectable()
 export class TechService {
@@ -111,9 +113,61 @@ export class TechService {
     return tech.toObject({ getters: true })
   }
 
+  async updateTech(
+    id: string,
+    category: string,
+    heading: string,
+    text: string,
+    icon: string,
+  ) {
+    const existingTech = await this.techModel.findById(id)
+    if (!existingTech) {
+      throw new NotFoundException("The tech with a given id was not found")
+    }
+
+    if (icon) {
+      fs.unlink(relative(process.cwd(), existingTech.icon), (err) => {
+        throw new BadRequestException(err.message)
+      })
+    }
+
+    existingTech.category = category
+    existingTech.heading = heading
+    existingTech.text = text
+    existingTech.icon = icon
+
+    const validationError = existingTech.validateSync()
+    if (validationError) {
+      throw new BadRequestException(validationError.message)
+    }
+
+    existingTech.save()
+
+    const session = await this.connection.startSession()
+    session.startTransaction()
+
+    try {
+      const techCategory = await this.findOrCreateCategory(category)
+      techCategory.items.push(existingTech.id)
+      await techCategory.save()
+      session.commitTransaction()
+    } catch (err) {
+      session.abortTransaction()
+      throw new BadRequestException(err.message)
+    }
+
+    return existingTech.toObject({ getters: true })
+  }
+
   async deleteTech(id: string) {
     try {
-      await this.techModel.findByIdAndDelete(id)
+      const tech = await this.techModel.findById(id)
+      if (!tech) throw new NotFoundException("No tech with this id found")
+      fs.unlink(join(process.cwd(), tech.icon), (err) => {
+        if (err) throw new BadRequestException(err.message)
+      })
+
+      await tech.deleteOne()
     } catch (err) {
       throw new BadRequestException(err.message)
     }

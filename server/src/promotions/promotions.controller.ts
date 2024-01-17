@@ -22,7 +22,7 @@ export class PromotionsController {
   async createPromotion(
     @Body() { text }: PromotionDto,
     @Req() request: Request,
-    @SharpImage(1200) image: string
+    @SharpImage(1200, true) image: string
   ) {
     const cookies = request.headers.cookie
     const cookiesArray: string[] = cookies ? cookies.split('; ') : []
