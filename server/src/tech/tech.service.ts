@@ -127,14 +127,17 @@ export class TechService {
 
     if (icon) {
       fs.unlink(relative(process.cwd(), existingTech.icon), (err) => {
-        throw new BadRequestException(err.message)
+        console.log(err)
       })
     }
 
     existingTech.category = category
     existingTech.heading = heading
     existingTech.text = text
-    existingTech.icon = icon
+    if(icon) {
+      existingTech.icon = icon
+    }
+    existingTech.icon = existingTech.icon
 
     const validationError = existingTech.validateSync()
     if (validationError) {
