@@ -56,7 +56,25 @@ export class PromotionsService {
     return promotion.toObject({ getters: true })
   }
 
-  async updateTech(id: string, text: string, image: string) {
+  async getAllPromotions() {
+    const promotions = await this.promotionModel.find()
+    if (!promotions) {
+      throw new NotFoundException("Promotions were not found")
+    }
+
+    return promotions.map((p) => p.toObject({ getters: true }))
+  }
+
+  async getSinglePromotion(id: string) {
+    const promotion = await this.promotionModel.findById(id)
+    if (!promotion) {
+      throw new NotFoundException("Promotion was not found")
+    }
+
+    return promotion.toObject({ getters: true })
+  }
+
+  async updatePromotion(id: string, text: string, image: string) {
     const promotion = await this.promotionModel.findById(id)
     if (!promotion) {
       throw new NotFoundException("Promotion was not found")
@@ -64,7 +82,7 @@ export class PromotionsService {
 
     if (image) {
       unlink(relative(process.cwd(), promotion.image), (err) => {
-        throw new BadRequestException(err)
+        console.error(err)
       })
       promotion.image = image
     }
@@ -89,7 +107,7 @@ export class PromotionsService {
     }
 
     unlink(relative(process.cwd(), promotion.image), (err) => {
-      if (err) throw new BadRequestException(err)
+      console.error(err)
     })
 
     await promotion.deleteOne()
