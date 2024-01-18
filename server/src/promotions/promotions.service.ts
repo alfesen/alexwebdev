@@ -1,18 +1,28 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import { Connection, Model } from 'mongoose';
-import { Promotion } from './promotion.schema';
-import { User } from 'src/users/user.schema';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from "@nestjs/common"
+import { InjectConnection, InjectModel } from "@nestjs/mongoose"
+import { Connection, Model } from "mongoose"
+import { Promotion } from "./promotion.schema"
+import { User } from "src/users/user.schema"
+import { unlink } from "fs"
+import { relative } from "path"
 
 @Injectable()
 export class PromotionsService {
-  constructor(@InjectModel('Promotion') private promotionModel: Model<Promotion>, @InjectModel('User') private userModel: Model<User>, @InjectConnection() private connection: Connection) { }
+  constructor(
+    @InjectModel("Promotion") private promotionModel: Model<Promotion>,
+    @InjectModel("User") private userModel: Model<User>,
+    @InjectConnection() private connection: Connection,
+  ) {}
 
-  async createPromotion(text: string, imageUrl: string, creator: string) {
+  async createPromotion(text: string, image: string, creator: string) {
     const promotion = new this.promotionModel({
       text,
-      image: imageUrl,
-      creator
+      image,
+      creator,
     })
 
     const error = promotion.validateSync()
@@ -29,7 +39,7 @@ export class PromotionsService {
     try {
       const user = await this.userModel.findById(creator)
       if (!user) {
-        throw new NotFoundException('User not found')
+        throw new NotFoundException("User not found")
       }
       const promotions = user.promotions
       promotions.push(promotion.id)
@@ -43,6 +53,45 @@ export class PromotionsService {
       session.endSession()
     }
 
-    return promotion
+    return promotion.toObject({ getters: true })
+  }
+
+  async updateTech(id: string, text: string, image: string) {
+    const promotion = await this.promotionModel.findById(id)
+    if (!promotion) {
+      throw new NotFoundException("Promotion was not found")
+    }
+
+    if (image) {
+      unlink(relative(process.cwd(), promotion.image), (err) => {
+        throw new BadRequestException(err)
+      })
+      promotion.image = image
+    }
+
+    promotion.text = text
+
+    const validationError = promotion.validateSync()
+
+    if (validationError) {
+      throw new BadRequestException(validationError.message)
+    }
+
+    promotion.save()
+
+    return promotion.toObject({ getters: true })
+  }
+
+  async deletePromotion(id: string) {
+    const promotion = await this.promotionModel.findById(id)
+    if (!promotion) {
+      throw new BadRequestException("Promotion not found")
+    }
+
+    unlink(relative(process.cwd(), promotion.image), (err) => {
+      if (err) throw new BadRequestException(err)
+    })
+
+    await promotion.deleteOne()
   }
 }
