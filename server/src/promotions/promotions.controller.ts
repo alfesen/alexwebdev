@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Param,
   Patch,
   Post,
@@ -52,13 +53,23 @@ export class PromotionsController {
     @Body() { text }: PromotionDto,
     @SharpImage(1200, false) image: string,
   ) {
-    const newTech = await this.promotionsService.updateTech(
+    const newTech = await this.promotionsService.updatePromotion(
       id,
       text,
       image ? image : undefined,
     )
 
     return newTech
+  }
+
+  @Get()
+  getAllPromotions() {
+    return this.promotionsService.getAllPromotions()
+  }
+
+  @Get('/:id')
+  getSinglePromotion(@Param('id') id: string) {
+    return this.promotionsService.getSinglePromotion(id)
   }
 
   @UseGuards(AuthGuard)
