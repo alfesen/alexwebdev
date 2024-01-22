@@ -1,11 +1,6 @@
 import { Field, ErrorMessage } from 'formik'
 import s from './Input.module.scss'
-
-type TInput = {
-  label: string
-  id: string
-  name: string
-} & ({ type: 'text' | 'email' } | { type: 'textarea'; rows: number })
+import { TInput } from '@/types/ui'
 
 const InputField = (props: TInput) => {
   const commonProps = {
