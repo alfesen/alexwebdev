@@ -1,0 +1,18 @@
+.backdrop {
+  position: fixed;
+  top: 0;right: 0;left: 0;bottom: 0;
+  height: 100dvh;
+  widows: 100dvh;
+  background-color: rgba($main-color-dark, .2);
+  backdrop-filter: blur(3px);
+  z-index: 900;
+  translate: 100% 0;
+  transition: translate .7s;
+ @include m.media(sm) {
+  display: none;
+ }
+  &.active {
+    translate: 0;
+  }
+}
+
