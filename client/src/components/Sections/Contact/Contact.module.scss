@@ -1,0 +1,38 @@
+.contact__menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  translate: 100% 0;
+  background-color: #69293d44;
+  backdrop-filter: blur(10px);
+
+  width: 33%;  
+  @include m.media(lg) {
+    width: 66%
+  }
+  @include m.media(sm) {
+    width: 100%;
+  }
+  z-index: 1000;
+  transition: translate .4s;
+
+  &.active {
+    translate: 0 0;
+  }
+}
+
+.close__icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;width: 100%;
+  text-align: right;
+  padding: 1em;
+  svg {
+    cursor: pointer;
+    transition: scale .2s;
+    &:hover {
+      scale: 1.1;
+    }
+  }
+}
