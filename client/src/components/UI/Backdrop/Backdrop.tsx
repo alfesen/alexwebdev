@@ -1,12 +1,7 @@
+import { TBackdropProps } from '@/types/ui'
 import s from './Backdrop.module.scss'
 
-const Backdrop = ({
-  isOpen,
-  close
-}: {
-  isOpen: boolean
-  close: () => void
-}) => {
+const Backdrop = ({ isOpen, close }: TBackdropProps) => {
   return (
     <div
       onClick={close}

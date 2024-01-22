@@ -1,3 +1,4 @@
+import { ParamlessVoidFn } from "./shared"
 
 export type TImage = {
   src: string
@@ -36,3 +37,12 @@ export type TTechStackNavigation = {
   page: string
   setPage: (key: string) => void
 }
+
+export type TFormValues = {
+  name: string
+  email: string
+  message: string
+  consent: boolean
+}
+
+export type TContactProps = { closeForm: ParamlessVoidFn }

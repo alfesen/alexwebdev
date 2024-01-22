@@ -9,15 +9,9 @@ import {
   useSpringRef,
   useTransition
 } from '@react-spring/web'
+import { TContactProps, TFormValues } from '@/types/features'
 
-type TFormValues = {
-  name: string
-  email: string
-  message: string
-  consent: boolean
-}
-
-const ContactForm = ({ closeForm }: { closeForm: () => void }) => {
+const ContactForm = ({ closeForm }: TContactProps) => {
   const initialValues: TFormValues = {
     name: '',
     email: '',
@@ -38,12 +32,7 @@ const ContactForm = ({ closeForm }: { closeForm: () => void }) => {
   })
 
   const array = [
-    <Input
-      label="Name and Surname"
-      type="text"
-      id="name"
-      name="name"
-    />,
+    <Input label="Name and Surname" type="text" id="name" name="name" />,
     <Input label="Email" type="email" id="email" name="email" />,
     <Input
       label="Message"
