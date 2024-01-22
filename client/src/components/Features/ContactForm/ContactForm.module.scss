@@ -1,0 +1,40 @@
+.form {
+  width: 100%;
+  padding: 1em;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .5em;
+}
+
+.submit {
+  width: 100%;
+  background-color: rgba($main-color-dark, .5);
+  border: none;
+  font-size: larger;
+  color: $main-color-light;
+  margin-top: $gap-small;
+  padding: 0.25em .5em;
+  box-shadow: 0 .1em 20px rgba($main-color-light, .35);
+  transition: background-color .2s, box-shadow .2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba($main-color-dark, .1);
+    box-shadow: 0 .1em 20px rgba($main-color-light, .55);
+  }
+}
+
+
+.error {
+  color: #F7375B;
+  text-shadow: 0 0 1px rgba($main-color-light, .55);
+}
+
+.consent > label {
+  width: 100%;
+  display: flex;
+align-items: center;
+  gap: 1em;
+}

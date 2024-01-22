@@ -1,0 +1,37 @@
+.envelope__box {
+  position: fixed;
+  right: 3rem;
+  bottom: 3rem;
+  animation: pop-up .7s ease-out 1s both;
+  cursor: pointer;
+}
+
+.envelope {
+  animation: glow 3s ease-in-out 1.7s infinite both;
+  padding: .3em;
+  border-radius: 50%;
+}
+
+@keyframes pop-up {
+  from {
+    translate: 8rem 2rem;
+  }
+
+  50% {
+    translate: 0rem 2rem
+  }
+
+  to {
+    translate: 0 0
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px #ffffff88 inset, 0 0 10px #ffffff88 inset, 0 0 15px #ffffff88 inset;
+  }
+  50% {
+    box-shadow: 0 0 10px #ffffff88 inset, 0 0 15px #ffffff88 inset, 0 0 20px #ffffff88 inset;
+  } 
+}

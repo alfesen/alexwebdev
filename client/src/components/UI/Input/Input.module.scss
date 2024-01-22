@@ -1,0 +1,22 @@
+.error {
+  color: #F7375B
+}
+
+.input {
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  & > * {
+    width: 100%;
+  }
+  
+  textarea {
+    resize: vertical
+  }
+  
+  textarea, input {
+    padding: .5em;
+    font-size: medium;
+  }
+}
