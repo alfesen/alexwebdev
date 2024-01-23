@@ -6,7 +6,7 @@ const SliderItem = ({
   offset,
   onClick,
   text,
-  backgroundImage,
+  backgroundImage
 }: TSliderItem) => {
   const randomColor = () => {
     const colors = ['#5bc0eb', '#fde74c', '#9bc53d', '#e55934', '#fa7921']
@@ -15,13 +15,13 @@ const SliderItem = ({
 
     return color
   }
-
+  console.log(backgroundImage.replace('\\', '/'))
   return (
     <>
       <ParallaxLayer offset={offset} speed={0.6} onClick={onClick}>
         <div
           style={{
-            backgroundImage: `linear-gradient(-60deg, transparent 5%, ${randomColor()}, ${randomColor()} ,${randomColor()})`,
+            backgroundImage: `linear-gradient(-60deg, transparent 5%, ${randomColor()}, ${randomColor()} ,${randomColor()})`
           }}
           className={`${s.slope} ${s.slope__end}`}
         />
@@ -31,8 +31,11 @@ const SliderItem = ({
         <div
           className={`${s.slope} ${s.slope__start}`}
           style={{
-            backgroundImage: `linear-gradient(to bottom, #131313 , transparent), url(${backgroundImage})`,
-          }}>
+            backgroundImage: `linear-gradient(to bottom, #131313 , transparent), url(${`${
+              import.meta.env.VITE_SERVER_URL
+            }/${backgroundImage}`})`
+          }}
+        >
           <p className={s['slope__start-text']}>{text}</p>
         </div>
       </ParallaxLayer>
