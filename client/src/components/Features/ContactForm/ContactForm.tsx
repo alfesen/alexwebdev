@@ -10,7 +10,7 @@ import {
   useTransition
 } from '@react-spring/web'
 import { TContactProps, TFormValues } from '@/types/features'
-
+import axios from 'axios'
 const ContactForm = ({ closeForm }: TContactProps) => {
   const initialValues: TFormValues = {
     name: '',
@@ -64,11 +64,15 @@ const ContactForm = ({ closeForm }: TContactProps) => {
   })
   useChain([transRef], [0])
 
-  const handleSubmit = (
+  const handleSubmit = async (
     values: TFormValues,
     { resetForm }: FormikHelpers<TFormValues>
   ) => {
-    console.table(values)
+    console.log(values)
+    const {
+      data: { message }
+    } = await axios.post(`${import.meta.env.VITE_SERVER_URL}/messages`, values)
+    console.log(message)
     resetForm()
     closeForm()
   }
