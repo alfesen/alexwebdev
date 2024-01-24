@@ -24,7 +24,13 @@ export class MessagesService {
       )
     }
 
-    const newMessage = new this.messageModel({ name, email, message, consent })
+    const newMessage = new this.messageModel({
+      name,
+      email,
+      message,
+      consent,
+      date: new Date().toLocaleString('pl')
+    })
 
     const validationError = newMessage.validateSync()
 
@@ -47,8 +53,10 @@ export class MessagesService {
     if (!messages || messages.length === 0) {
       throw new NotFoundException('No messages found')
     }
-
-    return messages.map((m) => m.toObject({ getters: true }))
+    const sortedMessages = messages.sort((a, b) =>
+      new Date(a.date) > new Date(b.date) ? 1 : -1
+    )
+    return sortedMessages.map((m) => m.toObject({ getters: true }))
   }
 
   async getSingleMessage(id: string) {
