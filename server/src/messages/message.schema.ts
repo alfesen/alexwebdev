@@ -13,6 +13,9 @@ export class Message {
 
   @Prop({ required: true })
   consent: true
+
+  @Prop({ type: String, required: true })
+  date: string
 }
 
 export const MessageSchema = SchemaFactory.createForClass(Message)
