@@ -96,7 +96,7 @@ export class TechService {
 
       if (categoryTechs.length > 0) {
         return {
-          [c.category]: categoryTechs,
+          [c.category]: categoryTechs.map(t => t.toObject({getters: true})),
         }
       }
     })
