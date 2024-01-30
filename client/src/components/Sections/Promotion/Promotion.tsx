@@ -9,7 +9,7 @@ const Promotion = () => {
     queryKey: ['promotion list items'],
     queryFn: async () => {
       const { data: promotions } = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/promotions`
+        `${process.env.VITE_SERVER_URL}/promotions`
       )
       return promotions.map(({ image, text }: AnyObject) => ({
         background: image.replaceAll('\\', '/'),
@@ -18,7 +18,7 @@ const Promotion = () => {
     }
   })
 
-  if(isLoading && !data) {
+  if (isLoading && !data) {
     return <></>
   }
 
