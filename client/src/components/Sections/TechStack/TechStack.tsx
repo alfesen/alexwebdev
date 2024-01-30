@@ -19,7 +19,7 @@ const TechStack = () => {
     queryKey: ['tech stack categories'],
     queryFn: async () => {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/tech`
+        `${process.env.VITE_SERVER_URL}/tech`
       )
       const categories = Object.keys(data).sort(
         (a, b) => data[a].length + data[b].length

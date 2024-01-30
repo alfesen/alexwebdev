@@ -1,15 +1,16 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import Env from 'vite-plugin-environment'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), Env('all')],
   base: './',
   resolve: {
     alias: {
-      '@': path.join(__dirname, '/src'),
-    },
+      '@': path.join(__dirname, '/src')
+    }
   },
 
   css: {
@@ -22,21 +23,21 @@ export default defineConfig({
           @import './src/scss/vars';
           @import './src/scss/utils';
           @import './src/scss/keyframes';
-        `,
-      },
-    },
+        `
+      }
+    }
   },
   server: {
     watch: {
-      usePolling: true,
+      usePolling: true
     },
     host: true,
     strictPort: true,
-    port: 5174,
+    port: 5174
   },
   build: {
     rollupOptions: {
-      external: ['react-helmet'],
-    },
-  },
+      external: ['react-helmet']
+    }
+  }
 })
