@@ -1,0 +1,24 @@
+.footer .name {
+  display: block;
+  line-height: .8em;
+  margin: 0 auto;
+  width: max-content;
+  text-transform: uppercase;
+  text-align: center;
+  &:first-child {
+    font-size: calc(100dvw / 8);
+  }
+  
+  &:last-child {
+    font-size: calc(100dvw / 5.8);
+  }
+}
+
+.red__letter {
+  color: red
+}
+
+.copy {
+  text-align: center;
+  padding: 4rem;
+}

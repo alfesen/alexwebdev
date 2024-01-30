@@ -1,3 +1,4 @@
+import Footer from './Footer/Footer'
 import Header from './Header/Header'
 import { TChildren } from '@/types/layout'
 
@@ -6,6 +7,7 @@ const MainLayout = ({ children }: TChildren) => {
     <>
       <Header />
       <main>{children}</main>
+      <Footer />
     </>
   )
 }
