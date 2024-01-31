@@ -20,11 +20,9 @@ async function bootstrap() {
       secret: process.env.COOKIE_KEY,
       resave: false,
       saveUninitialized: true,
-
       cookie: {
         secure: true,
-        sameSite: 'none',
-        domain: process.env.ADMIN_CLIENT
+        sameSite: 'none'
       }
     })
   )
