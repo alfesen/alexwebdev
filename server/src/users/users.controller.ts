@@ -33,9 +33,9 @@ export class UsersController {
         partitioned: true,
         expires: expirationDate,
         secure: true,
-        httpOnly: true,
+        httpOnly: false,
         priority: 'high',
-        sameSite: 'lax'
+        sameSite: 'none'
       })
     )
 
