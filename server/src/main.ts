@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { ValidationPipe } from '@nestjs/common'
 import { UploadExceptionFilter } from './filters/upload-exception.filter'
-import * as session from 'express-session'
+import * as session from 'cookie-session'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
@@ -19,7 +19,8 @@ async function bootstrap() {
     session({
       secret: process.env.COOKIE_KEY,
       resave: false,
-      saveUninitialized: false,
+      saveUninitialized: true,
+
       cookie: {
         secure: true,
         sameSite: 'none',
