@@ -22,7 +22,8 @@ async function bootstrap() {
       saveUninitialized: false,
       cookie: {
         secure: true,
-        sameSite: 'none'
+        sameSite: 'none',
+        domain: process.env.ADMIN_CLIENT
       }
     })
   )
