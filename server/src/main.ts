@@ -7,6 +7,11 @@ import * as session from 'express-session'
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
   app.enableCors({
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'Access-Control-Allow-Origin'
+    ],
     origin: [
       process.env.ADMIN_CLIENT,
       process.env.CLIENT,
@@ -23,6 +28,7 @@ async function bootstrap() {
       cookie: {
         secure: true,
         sameSite: 'none',
+        httpOnly: false
       }
     })
   )
