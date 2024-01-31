@@ -27,6 +27,6 @@ export class UsersController {
   async login(@Body() { email, password }: User, @Res() res: Response) {
     const user = await this.authService.login(email, password)
     res.cookie('isAuth', user._id.toString(), { expires: expirationDate })
-    return user
+    return res
   }
 }
