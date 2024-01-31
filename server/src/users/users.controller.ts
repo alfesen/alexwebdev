@@ -5,6 +5,7 @@ import { UserDto } from './dtos/user.dto'
 import { Response } from 'express'
 import { User } from './user.schema'
 import * as cookie from 'cookie'
+import { devNull } from 'os'
 
 const expirationHours = 8
 const expirationDate = new Date()
@@ -29,7 +30,7 @@ export class UsersController {
     const user = await this.authService.login(email, password)
     res.cookie(
       'isAuth',
-      cookie.serialize('isAuth', user._id.toString(), {
+      cookie.serialize(devNull, user._id.toString(), {
         partitioned: true,
         expires: expirationDate,
         secure: true,
