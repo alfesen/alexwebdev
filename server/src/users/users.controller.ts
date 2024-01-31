@@ -35,7 +35,7 @@ export class UsersController {
         secure: true,
         httpOnly: true,
         priority: 'high',
-        sameSite: 'none'
+        sameSite: 'lax'
       })
     )
 
