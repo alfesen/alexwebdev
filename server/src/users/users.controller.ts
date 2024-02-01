@@ -37,6 +37,7 @@ export class UsersController {
       secure: true
     })
     res.setHeader('Set-Cookie', cookies)
+    res.setHeader('access-control-expose-headers', 'Set-Cookie')
     return res
   }
 }
