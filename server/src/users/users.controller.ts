@@ -4,7 +4,7 @@ import { Serialize } from 'src/decorators/serialize.decorator'
 import { UserDto } from './dtos/user.dto'
 import { Response } from 'express'
 import { User } from './user.schema'
-import cookie from 'cookie'
+import * as cookie from 'cookie'
 
 const expirationHours = 8
 const expirationDate = new Date()
