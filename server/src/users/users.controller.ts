@@ -34,10 +34,9 @@ export class UsersController {
       partitioned: true,
       expires: expirationDate,
       sameSite: 'none',
-      secure: true
+      secure: true,
     })
     res.setHeader('Set-Cookie', cookies)
-    res.setHeader('access-control-expose-headers', 'Set-Cookie')
     return res
   }
 }

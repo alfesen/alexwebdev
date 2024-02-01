@@ -16,6 +16,7 @@ async function bootstrap() {
     origin: process.env.ADMIN_CLIENT,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
+    exposedHeaders: ['Set-Cookie'],
     credentials: true
   }
   const app = await NestFactory.create(AppModule)
