@@ -33,7 +33,7 @@ export class UsersController {
     const cookies = cookie.serialize('isAuth', user._id.toString(), {
       partitioned: true,
       expires: expirationDate,
-      sameSite: 'none'
+      sameSite: 'None' as 'none'
     })
     res.cookie(cookies, {})
     return res
