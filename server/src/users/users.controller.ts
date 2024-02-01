@@ -26,7 +26,8 @@ export class UsersController {
   @Post('signin')
   async login(@Body() { email, password }: User, @Res() res: Response) {
     const user = await this.authService.login(email, password)
-    res.cookie('isAuth', `${user._id.toString()}; Partitioned`, { expires: expirationDate })
+    res.cookie('isAuth', user._id.toString(), { expires: expirationDate })
+    res.cookie('Partitioned', true, { expires: expirationDate })
     return res
   }
 }
