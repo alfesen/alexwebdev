@@ -4,6 +4,7 @@ import { Serialize } from 'src/decorators/serialize.decorator'
 import { UserDto } from './dtos/user.dto'
 import { Response } from 'express'
 import { User } from './user.schema'
+import cookie from 'cookie'
 
 const expirationHours = 8
 const expirationDate = new Date()
@@ -26,7 +27,14 @@ export class UsersController {
   @Post('signin')
   async login(@Body() { email, password }: User, @Res() res: Response) {
     const user = await this.authService.login(email, password)
-    res.cookie('isAuth', user._id.toString(), { expires: expirationDate }).set('Partitioned')
+    // res
+    //   .cookie('isAuth', user._id.toString(), { expires: expirationDate })
+    //   .set('Partitioned')
+    cookie.serialize('isAuth', user._id.toString(), {
+      partitioned: true,
+      expires: expirationDate,
+      sameSite: 'none'
+    })
     return res
   }
 }
