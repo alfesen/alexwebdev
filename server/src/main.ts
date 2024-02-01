@@ -12,14 +12,18 @@ async function bootstrap() {
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
   }
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule, { cors: true })
   app.enableCors(corsOptions)
   app.useGlobalPipes(new ValidationPipe({ transform: true }))
   app.use(
     session({
       secret: process.env.COOKIE_KEY,
       resave: false,
-      saveUninitialized: false
+      saveUninitialized: false,
+      cookie: {
+        domain: process.env.ADMIN_CLIENT,
+        secure: true
+      }
     })
   )
 
