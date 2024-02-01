@@ -29,7 +29,7 @@ async function bootstrap() {
       cookie: {
         domain: process.env.ADMIN_CLIENT,
         secure: true,
-        partitioned: true
+        sameSite: 'none'
       }
     })
   )
