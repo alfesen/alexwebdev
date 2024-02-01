@@ -5,6 +5,12 @@ import { UploadExceptionFilter } from './filters/upload-exception.filter'
 import * as session from 'express-session'
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface'
 
+declare module 'express-session' {
+  interface CookieOptions {
+    partitioned?: boolean
+  }
+}
+
 async function bootstrap() {
   const corsOptions: CorsOptions = {
     origin: process.env.ADMIN_CLIENT,
@@ -22,7 +28,8 @@ async function bootstrap() {
       saveUninitialized: false,
       cookie: {
         domain: process.env.ADMIN_CLIENT,
-        secure: true
+        secure: true,
+        partitioned: true
       }
     })
   )
