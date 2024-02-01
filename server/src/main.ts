@@ -6,13 +6,11 @@ import * as session from 'express-session'
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface'
 
 async function bootstrap() {
-
-  
   const corsOptions: CorsOptions = {
-    origin: [process.env.ADMIN_CLIENT, process.env.CLIENT],
+    origin: process.env.ADMIN_CLIENT,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
+    credentials: true
   }
   const app = await NestFactory.create(AppModule)
   app.enableCors(corsOptions)
