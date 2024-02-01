@@ -30,11 +30,12 @@ export class UsersController {
     // res
     //   .cookie('isAuth', user._id.toString(), { expires: expirationDate })
     //   .set('Partitioned')
-    cookie.serialize('isAuth', user._id.toString(), {
+    const cookies = cookie.serialize('isAuth', user._id.toString(), {
       partitioned: true,
       expires: expirationDate,
       sameSite: 'none'
     })
+    res.cookie(cookies, {})
     return res
   }
 }
