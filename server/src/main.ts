@@ -12,7 +12,7 @@ async function bootstrap() {
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
   }
-  const app = await NestFactory.create(AppModule, { cors: true })
+  const app = await NestFactory.create(AppModule)
   app.enableCors(corsOptions)
   app.useGlobalPipes(new ValidationPipe({ transform: true }))
   app.use(
