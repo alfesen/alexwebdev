@@ -13,7 +13,7 @@ declare module 'express-session' {
 
 async function bootstrap() {
   const corsOptions: CorsOptions = {
-    origin: process.env.ADMIN_CLIENT,
+    origin: [process.env.CLIENT, process.env.ADMIN_CLIENT],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     exposedHeaders: ['Set-Cookie'],
