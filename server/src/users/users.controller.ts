@@ -27,16 +27,13 @@ export class UsersController {
   @Post('signin')
   async login(@Body() { email, password }: User, @Res() res: Response) {
     const user = await this.authService.login(email, password)
-    // res
-    //   .cookie('isAuth', user._id.toString(), { expires: expirationDate })
-    //   .set('Partitioned')
     const cookies = cookie.serialize('isAuth', user._id.toString(), {
       partitioned: true,
       expires: expirationDate,
       sameSite: 'none',
-      secure: true,
+      secure: true
     })
     res.setHeader('Set-Cookie', cookies)
-    return res
+    return user
   }
 }
