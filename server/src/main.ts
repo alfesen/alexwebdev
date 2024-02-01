@@ -3,13 +3,19 @@ import { AppModule } from './app.module'
 import { ValidationPipe } from '@nestjs/common'
 import { UploadExceptionFilter } from './filters/upload-exception.filter'
 import * as session from 'express-session'
+import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
-  app.enableCors({
+
+  
+  const corsOptions: CorsOptions = {
     origin: [process.env.ADMIN_CLIENT, process.env.CLIENT],
-    credentials: true
-  })
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  }
+  const app = await NestFactory.create(AppModule)
+  app.enableCors(corsOptions)
   app.useGlobalPipes(new ValidationPipe({ transform: true }))
   app.use(
     session({
