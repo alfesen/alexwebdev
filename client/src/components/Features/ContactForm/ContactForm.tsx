@@ -10,7 +10,7 @@ import {
   useTransition
 } from '@react-spring/web'
 import { TContactProps, TFormValues } from '@/types/features'
-import axios from 'axios'
+import emailjs from '@emailjs/browser'
 
 const ContactForm = ({ closeForm }: TContactProps) => {
   const initialValues: TFormValues = {
@@ -44,8 +44,9 @@ const ContactForm = ({ closeForm }: TContactProps) => {
     />,
     <div className={s.consent}>
       <label>
-        <Field type="checkbox" name="consent" />I agree to the terms and
-        conditions
+        <Field type="checkbox" name="consent" />
+        By submitting your details through this contact form, you agree to the
+        use of your information for the purposes of responding to your query.
       </label>
       <ErrorMessage name="consent" component="sub" className={s.error} />
     </div>,
@@ -69,11 +70,21 @@ const ContactForm = ({ closeForm }: TContactProps) => {
     values: TFormValues,
     { resetForm }: FormikHelpers<TFormValues>
   ) => {
-    console.log(values)
-    const {
-      data: { message }
-    } = await axios.post(`${process.env.VITE_SERVER_URL}/messages`, values)
-    console.log(message)
+    const serviceId = process.env.EMAIL_SERVICE_ID as string
+    const templateId = process.env.EMAIL_TEMPLATE_ID as string
+    try {
+      await emailjs.send(serviceId, templateId, {
+        from_name: values.name,
+        body: values.message,
+        from_email: values.email,
+        reply_to: values.email,
+        user_email: values.email,
+        consent: values.consent
+      })
+    } catch (err) {
+      console.log(err)
+    }
+
     resetForm()
     closeForm()
   }
