@@ -4,7 +4,7 @@ import type { IParallax } from "@react-spring/parallax"
 import { nanoid } from "nanoid"
 import s from "./Slider.module.scss"
 import SliderItem from "./SliderItem/SliderItem"
-import { TSlider } from "@/types/features"
+import { TPromotion, TSlider } from "@/types/features"
 import { useInView } from "@react-spring/web"
 
 const Slider = ({ items }: TSlider) => {
@@ -37,7 +37,7 @@ const Slider = ({ items }: TSlider) => {
           config={{ damping: 1 }}
         >
           {items.map(
-            ({ text, background }: Record<string, string>, index: number) => {
+            ({ text, background }: TPromotion, index: number) => {
               return (
                 <SliderItem
                   key={nanoid()}
