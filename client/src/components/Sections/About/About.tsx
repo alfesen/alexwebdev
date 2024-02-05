@@ -1,6 +1,6 @@
 import Gallery from "@/components/UI/Gallery/Gallery"
 import s from "./About.module.scss"
-import author from "@/assets/img/author.png"
+import author from "@/assets/img/author.webp"
 import { useInView } from "@react-spring/web"
 import TechStackIcons from "../../Features/TechStackIcons/TechStackIcons"
 import AnimatedHeading from "@/components/Typography/AnimatedHeading/AnimatedHeading"

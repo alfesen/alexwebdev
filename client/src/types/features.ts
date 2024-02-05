@@ -14,7 +14,9 @@ export type TGallery = {
   className?: string
 }
 
-export type TSlider = { items: Record<string, string>[] }
+export type TSlider = { items: TPromotion[] }
+
+export type TPromotion = { text: string; background: string }
 
 export type TSliderItem = {
   offset: number
