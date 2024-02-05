@@ -1,4 +1,5 @@
-import { ParamlessVoidFn } from "./shared"
+import { ParamlessVoidFn } from './shared'
+import { ReactNode } from 'react'
 
 export type TImage = {
   src: string
@@ -23,7 +24,7 @@ export type TSliderItem = {
 }
 
 export type TTechStackListItemProps = {
-  icon: string
+  icon: ReactNode
   heading: string
   text: string
 }
