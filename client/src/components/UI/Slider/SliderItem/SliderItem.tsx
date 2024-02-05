@@ -15,7 +15,7 @@ const SliderItem = ({
 
     return color
   }
-  console.log(backgroundImage.replace('\\', '/'))
+
   return (
     <>
       <ParallaxLayer offset={offset} speed={0.6} onClick={onClick}>
@@ -31,9 +31,7 @@ const SliderItem = ({
         <div
           className={`${s.slope} ${s.slope__start}`}
           style={{
-            backgroundImage: `linear-gradient(to bottom, #131313 , transparent), url(${`${
-              import.meta.env.VITE_SERVER_URL
-            }/${backgroundImage}`})`
+            backgroundImage: `linear-gradient(to bottom, #131313 , transparent), url(${backgroundImage})`
           }}
         >
           <p className={s['slope__start-text']}>{text}</p>
