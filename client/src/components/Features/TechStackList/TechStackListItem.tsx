@@ -7,11 +7,13 @@ const TechStackListItem = ({
   heading,
   text
 }: TTechStackListItemProps) => {
-  const Icon = () => icon
+  const Icon = icon
   return (
     <li className={s.item}>
-      <Icon />
       <div>
+        <Icon size={60} />
+      </div>
+      <div className={s.item__content}>
         <Heading semantic="h3">{heading}</Heading>
         <p>{text}</p>
       </div>
