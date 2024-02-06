@@ -26,63 +26,63 @@ const TechStack = () => {
   const stack: Record<string, TTechStackListItemProps[]> = {
     frontend: [
       {
-        icon: <BiLogoReact />,
+        icon: BiLogoReact,
         heading: 'ReactJS',
         text: 'ReactJS enhances website interactivity for a better user experience'
       },
       {
-        icon: <BiLogoHtml5 />,
+        icon: BiLogoHtml5,
         heading: 'HTML',
         text: 'Structures web content, creating intuitive and organized interfaces primarily for frontend development and user interface design'
       },
       {
-        icon: <BiLogoCss3 />,
+        icon: BiLogoCss3,
         heading: 'CSS',
         text: 'Transforms website aesthetics, adding style for a visually pleasing and memorable user experience, focusing on frontend styling'
       }
     ],
     backend: [
       {
-        icon: <BiLogoNodejs />,
+        icon: BiLogoNodejs,
         heading: 'Node.js',
         text: 'Powers websites with swift and responsive interactions, excelling in server-side development and enabling dynamic backend functionality'
       },
       {
-        icon: <SiExpress />,
+        icon: SiExpress,
         heading: 'Express.js',
         text: 'Fuels web servers and contributes to the efficiency and responsiveness of websites, specializing in server-side development and routing'
       },
       {
-        icon: <SiNestjs />,
+        icon: SiNestjs,
         heading: 'NestJS',
         text: 'A framework that empowers websites with sophisticated features, specializing in server-side development and ensuring a robust backend for enhanced user experiences'
       }
     ],
     fullstack: [
       {
-        icon: <SiTypescript />,
+        icon: SiTypescript,
         heading: 'TypeScript',
         text: 'A language that elevates web development with enhanced strength and dependability, primarily focusing on frontend and backend scripting for seamless interactions'
       },
       {
-        icon: <SiNextdotjs />,
+        icon: SiNextdotjs,
         heading: 'Next.js',
         text: 'Fuels web servers and contributes to the efficiency and responsiveness of websites, specializing in server-side development and routing'
       },
       {
-        icon: <SiVite />,
+        icon: SiVite,
         heading: 'Vite',
         text: 'Accelerates web presence by delivering a faster and more responsive user interface, focusing on frontend development and optimizing build processes'
       }
     ],
     testing: [
       {
-        icon: <SiVitest />,
+        icon: SiVitest,
         heading: 'Vitest',
         text: 'Ensures the reliability and stability of web applications, specializing in frontend testing to maintain a dependable user experience'
       },
       {
-        icon: <SiJest />,
+        icon: SiJest,
         heading: 'Jest',
         text: 'Ensures the reliability of web applications through comprehensive testing, focusing on frontend and backend testing to maintain a consistent user experience'
       }

@@ -1,5 +1,5 @@
+import { IconType } from 'react-icons'
 import { ParamlessVoidFn } from './shared'
-import { ReactNode } from 'react'
 
 export type TImage = {
   src: string
@@ -26,7 +26,7 @@ export type TSliderItem = {
 }
 
 export type TTechStackListItemProps = {
-  icon: ReactNode
+  icon: IconType
   heading: string
   text: string
 }
