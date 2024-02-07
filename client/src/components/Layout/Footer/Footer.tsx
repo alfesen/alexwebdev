@@ -19,9 +19,13 @@ const Footer = () => {
 
   const name = [
     <span>
-      Alexan<span className={s.red__letter}>d</span>er
+      <span className={s['red__letter--corner']}>A</span>lexan
+      <span className={s.red__letter}>d</span>er
     </span>,
-    <span>Fesenko</span>
+    <span>
+      Fe<span className={s.red__letter}>s</span>enk
+      <span className={s['red__letter--corner']}>o</span>
+    </span>
   ]
 
   const transitions = useTransition(name, {

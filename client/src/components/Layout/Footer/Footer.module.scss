@@ -1,6 +1,6 @@
 .footer .name {
   display: block;
-  line-height: .8em;
+  line-height: 0.8em;
   margin: 0 auto;
   width: max-content;
   text-transform: uppercase;
@@ -8,14 +8,18 @@
   &:first-child {
     font-size: calc(100dvw / 8);
   }
-  
+
   &:last-child {
     font-size: calc(100dvw / 5.8);
   }
 }
 
 .red__letter {
-  color: red
+  animation: makeItRed 0.4s 2s both;
+}
+
+.red__letter--corner {
+  animation: makeItRed 0.4s 2.7s both;
 }
 
 .copy {
