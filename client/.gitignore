@@ -25,3 +25,8 @@ dist-ssr
 *.jpg
 *.png
 *.webp
+*.env
+*.env
+.firebaserc
+./firebase.json
+.firebase/*

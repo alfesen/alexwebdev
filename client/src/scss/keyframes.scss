@@ -34,3 +34,12 @@
     translate: 0 0;
   }
 }
+
+@keyframes makeItRed {
+  from {
+    color: inherit;
+  }
+  to {
+    color: rgb(189, 49, 49);
+  }
+}
