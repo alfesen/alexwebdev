@@ -1,0 +1,19 @@
+.slider {
+  position: relative;
+  max-height: 100dvh !important;
+  overflow-anchor: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    visibility: hidden;
+  }
+}
+
+.before-view {
+  height: 300px;
+}
+
+.slider > div > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
