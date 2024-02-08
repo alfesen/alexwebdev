@@ -23,7 +23,10 @@
 
     @include m.media(md) {
       line-height: 1;
-      padding: unset;
+    }
+
+    @include m.media(sm) {
+      font-size: $medium-small-font;
     }
   }
   &__start-text {
@@ -33,6 +36,9 @@
     background-color: #000a;
     border-bottom-right-radius: 70px;
     border-top-left-radius: 70px;
+    @include m.media(sm) {
+      width: max-content;
+    }
   }
   &__end {
     clip-path: $slope-end-polygon;

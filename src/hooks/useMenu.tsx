@@ -5,8 +5,10 @@ const useMenu = () => {
 
   const openMenu = () => {
     setIsMenuOpen(true)
+    document.body.style.overflow = 'hidden'
   }
   const closeMenu = () => {
+    document.body.style.overflow = 'visible'
     setIsMenuOpen(false)
   }
 
