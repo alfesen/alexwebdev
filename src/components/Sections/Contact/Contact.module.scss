@@ -6,15 +6,15 @@
   background-color: #69293d44;
   backdrop-filter: blur(10px);
 
-  width: 33%;  
+  width: 33%;
   @include m.media(lg) {
-    width: 66%
+    width: 66%;
   }
   @include m.media(sm) {
-    width: 100%;
+    width: 100vw;
   }
   z-index: 1000;
-  transition: translate .4s;
+  transition: translate 0.4s;
 
   &.active {
     translate: 0 0;
@@ -25,12 +25,13 @@
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;width: 100%;
+  right: 0;
+  width: 100%;
   text-align: right;
   padding: 1em;
   svg {
     cursor: pointer;
-    transition: scale .2s;
+    transition: scale 0.2s;
     &:hover {
       scale: 1.1;
     }
