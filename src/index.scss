@@ -8,6 +8,14 @@
 
 html {
   font-size: 62.5%;
+  scroll-snap-type: y mandatory;
+}
+
+header,
+footer,
+section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 body {
@@ -20,6 +28,7 @@ body {
 
 section {
   margin: $section-margin;
+  scroll-snap-align: start;
 }
 
 .container {
