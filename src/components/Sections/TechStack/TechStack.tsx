@@ -1,3 +1,4 @@
+import s from './TechStack.module.scss'
 import TechStackList from '@/components/Features/TechStackList/TechStackList'
 import TechStackNavigation from '@/components/Features/TechStackList/TechStackNavigation'
 import ContentGrid from '@/components/UI/Grid/ContentGrid'
@@ -101,7 +102,7 @@ const TechStack = () => {
   const AnimatedContainer = animated(ContentGrid)
 
   return (
-    <section ref={ref}>
+    <section ref={ref} className={s.tech}>
       {inView && page && (
         <AnimatedContainer style={props}>
           <TechStackNavigation keys={keys} page={page} setPage={setPage} />

@@ -41,7 +41,7 @@ const Footer = () => {
   useChain([transRef], [1])
 
   return (
-    <>
+    <footer>
       <div ref={ref} className={s.footer}>
         {transitions((style, item) => {
           return (
@@ -54,7 +54,7 @@ const Footer = () => {
       <p className={s.copy}>
         &copy; {new Date().getFullYear()} Alexander Fesenko Web Development
       </p>
-    </>
+    </footer>
   )
 }
 

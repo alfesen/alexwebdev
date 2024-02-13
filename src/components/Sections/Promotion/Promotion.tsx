@@ -21,7 +21,11 @@ const data: TPromotion[] = [
 ]
 
 const Promotion = () => {
-  return <div className={s.promotion__container}>{<Slider items={data} />}</div>
+  return (
+    <section className={s.promotion__container}>
+      {<Slider items={data} />}
+    </section>
+  )
 }
 
 export default Promotion

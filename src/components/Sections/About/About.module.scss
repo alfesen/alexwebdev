@@ -5,6 +5,7 @@
   gap: 5em;
   opacity: 0;
   translate: 50% 0;
+  scroll-margin-top: 30px;
 
   &.shown {
     animation: fadeUp 0.7s ease-out forwards;
