@@ -6,7 +6,7 @@
     @include m.background(
       (
         linear-gradient(to bottom, #00000060 10%, $main-color-dark),
-        url('@/assets/img/header-lg.webp')
+        url('./img/header-lg.webp')
       )
     );
     position: absolute;
