@@ -1,11 +1,15 @@
 .title {
   padding: 12.5%;
   z-index: 1;
+  line-height: 0.9;
   text-align: right;
 
   .subtitle {
     display: block;
     font-size: $main-subheading-font;
+    @include m.media(sm) {
+      font-size: $main-subheading-font-sm;
+    }
     margin-top: 0.5em;
   }
 }

@@ -26,6 +26,7 @@ dist-ssr
 *.png
 *.webp
 *.env.development
+*.env.production
 .firebaserc
 firebase.json
 .firebase

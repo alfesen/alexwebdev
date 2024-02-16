@@ -5,8 +5,9 @@
   width: max-content;
   text-transform: uppercase;
   text-align: center;
+  font-family: $heading-font-family;
   &:first-child {
-    font-size: calc(100dvw / 8);
+    font-size: calc(100dvw / 7.8);
   }
 
   &:last-child {

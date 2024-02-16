@@ -35,9 +35,4 @@ export default defineConfig({
     strictPort: true,
     port: 5174
   },
-  build: {
-    rollupOptions: {
-      external: ['react-helmet']
-    }
-  }
 })

@@ -17,7 +17,7 @@
     &:last-child {
       background-position: right center;
     }
-    font-family: sans-serif;
+    font-family: $basic-font-family;
     text-transform: uppercase;
     animation: left-to-right 0.6s;
 
