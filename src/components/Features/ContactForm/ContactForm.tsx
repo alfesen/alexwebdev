@@ -45,8 +45,13 @@ const ContactForm = ({ closeForm }: TContactProps) => {
     <div className={s.consent}>
       <label>
         <Field type="checkbox" name="consent" />
-        By submitting your details through this contact form, you agree to the
-        use of your information for the purposes of responding to your query.
+        <sub>
+          By submitting your details through this contact form, you agree to the
+          use of your information for the purposes of responding to your query.
+          / Przesyłając swoje dane za pomocą tego formularza kontaktowego,
+          zgadzasz się na wykorzystanie Twoich informacji w celu odpowiedzi na
+          Twoje zapytanie.
+        </sub>
       </label>
       <ErrorMessage name="consent" component="sub" className={s.error} />
     </div>,
