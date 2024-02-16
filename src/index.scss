@@ -27,6 +27,16 @@ body {
   width: 100%;
   overflow-x: hidden;
   color: $main-color-light;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #fff2;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #fffd;
+  }
 }
 
 section {
